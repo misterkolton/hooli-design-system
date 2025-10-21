@@ -1,0 +1,35 @@
+module.exports = {
+  root: true,
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: ['tsconfig.json'],
+      },
+      plugins: ['promise'],
+      rules: {
+        '@typescript-eslint/naming-convention': [
+          'error',
+          {
+            selector: 'variable',
+            types: ['boolean'],
+            format: ['PascalCase'],
+            prefix: ['is', 'should', 'has', 'can', 'did', 'show'],
+          },
+        ],
+      },
+    },
+  ],
+  extends: 'react-app',
+  rules: {
+    'import/no-cycle': 'error',
+    'import/no-anonymous-default-export': 'off',
+    'promise/prefer-await-to-then': 'error',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': [
+      'error',
+      { additionalHooks: 'useEffectDeepCompare' },
+    ],
+  },
+}

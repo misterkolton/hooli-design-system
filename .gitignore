@@ -1,0 +1,9 @@
+node_modules
+dist
+.DS_Store
+yarn-error.log
+storybook-static
+.vscode
+storybook-static
+build
+.git/*

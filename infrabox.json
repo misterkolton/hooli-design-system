@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "type": "docker-image",
+      "name": "master",
+      "image": "harbor.hq.sendoutcards.com/socops/citool",
+      "command": [
+        "if_branch",
+        "master",
+        "infrabox-master.json"
+      ],
+      "resources": {
+        "limits": {
+          "cpu": 1,
+          "memory": 1024
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@common/eslint-config",
+  "version": "0.0.2",
+  "license": "ISC",
+  "main": "index.ts",
+  "publishConfig": {
+    "access": "public"
+  }
+}

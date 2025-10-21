@@ -1,0 +1,54 @@
+{
+  "jobs": [
+    {
+      "name": "build",
+      "type": "docker-image",
+      "image": "harbor.hq.sendoutcards.com/socops/node:lts",
+      "command": [
+        "/bin/bash",
+        "-c",
+        "apt-get update && apt-get -y install zip && cd /infrabox/context; yarn install; yarn build-storybook && cd packages/ui/storybook-static && zip -r /infrabox/output/${INFRABOX_COMMIT_ID}.zip ."
+      ],
+      "resources": {
+        "limits": {
+          "cpu": 1,
+          "memory": 4096
+        }
+      }
+    },
+    {
+      "name": "upload",
+      "type": "docker-image",
+      "image": "harbor.hq.sendoutcards.com/socops/citool",
+      "command": [
+        "s3upload",
+        "-public",
+        "-unpack",
+        "-endpoint",
+        "https://s3.prod.sendoutcards.com",
+        "/infrabox/inputs/build/$INFRABOX_COMMIT_ID.zip",
+        "quantum-design-system",
+        "/"
+      ],
+      "depends_on": ["build"],
+      "repository": {
+        "clone": false
+      },
+      "environment": {
+        "AWS_ACCESS_KEY_ID": {
+          "$secret": "AWS_ACCESS_KEY_ID"
+        },
+        "AWS_SECRET_ACCESS_KEY": {
+          "$secret": "AWS_SECRET_ACCESS_KEY"
+        }
+      },
+      "resources": {
+        "limits": {
+          "cpu": 1,
+          "memory": 1024
+        }
+      }
+    }
+  ],
+  "version": 1
+}

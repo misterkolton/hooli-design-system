@@ -1,0 +1,1027 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots organisms/Awards Basic Earned 1`] = `
+<div
+  css={
+    Object {
+      "map": undefined,
+      "name": "cz92cd",
+      "next": undefined,
+      "styles": "
+          font-size: 16px;
+          > div {
+            font-size: inherit;
+          }
+        ",
+      "toString": [Function],
+    }
+  }
+>
+  <div
+    className=""
+    style={Object {}}
+  >
+    <div
+      className=""
+      style={Object {}}
+    >
+      <div
+        css={
+          Object {
+            "map": undefined,
+            "name": "blk4bc",
+            "next": undefined,
+            "styles": "
+    p {
+      position: relative;
+      z-index: 100;
+      font-weight: 500;
+      color: #FF05A7;
+    }
+    width: 100%;
+    height: 100%;
+  ",
+            "toString": [Function],
+          }
+        }
+      >
+        <div
+          css={
+            Object {
+              "map": undefined,
+              "name": "1aonf1q",
+              "next": undefined,
+              "styles": "
+    width: 145px;
+    height: 145px;
+    border-radius: 12px;
+    transition: all 0.1s ease;
+    position: relative;
+    transform: scale(1);
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    cursor: pointer;
+    > div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      border-radius: inherit;
+    }
+  ",
+              "toString": [Function],
+            }
+          }
+        >
+          <div
+            css={
+              Object {
+                "map": undefined,
+                "name": "1bikyof",
+                "next": undefined,
+                "styles": "
+    filter: initial;
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    &:before {
+      content: '';
+      border-radius: inherit;
+      display: block;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      pointer-events: none;
+      mix-blend-mode: initial;
+      opacity: initial;
+      background: initial;
+    }
+  ",
+                "toString": [Function],
+              }
+            }
+          >
+            <div
+              css={
+                Object {
+                  "map": undefined,
+                  "name": "v5wlkd",
+                  "next": undefined,
+                  "styles": "
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: inherit;
+    background-image: url(https://images.unsplash.com/photo-1558470598-a5dda9640f68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3151&q=80);
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    &::before {
+      content: '';
+      background: inherit;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 1;
+      position: absolute;
+      top: 16px;
+      transform: scale(0.9);
+      filter: blur(10px);
+      opacity: 0.88;
+      border-radius: inherit;
+    }
+    &::after {
+      content: '';
+      background: inherit;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 2;
+      position: absolute;
+      border-radius: inherit;
+    }
+  ",
+                  "toString": [Function],
+                }
+              }
+            />
+          </div>
+        </div>
+        <p />
+      </div>
+    </div>
+    <span
+      css={
+        Object {
+          "map": undefined,
+          "name": "dx1ijl",
+          "next": undefined,
+          "styles": "
+    display: inline;
+    font-family: Montserrat, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-style: normal;
+    line-height: ;
+    text-decoration: ;
+    font-size:1em;font-weight:500;color:#434A56;;
+  ",
+          "toString": [Function],
+        }
+      }
+    >
+      Award Title
+    </span>
+    <div
+      className=""
+      style={Object {}}
+    >
+      <div
+        css={
+          Object {
+            "map": undefined,
+            "name": "ueaybp",
+            "next": undefined,
+            "styles": "
+    display: flex;
+    align-items: center;
+    width: 100%;
+  ",
+            "toString": [Function],
+          }
+        }
+      >
+        <div
+          css={
+            Object {
+              "map": undefined,
+              "name": "l06qn5",
+              "next": undefined,
+              "styles": "
+    background-color: #E7ECF3;
+    height: 8px;
+    position: relative;
+    width: 100%;
+    border-radius: 16px;
+    margin-right: 8px;
+    > div {
+      background: #00FF6A;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      border-radius: inherit;
+    }
+  ",
+              "toString": [Function],
+            }
+          }
+        >
+          <div />
+        </div>
+        <svg
+          height={24}
+          viewBox=" 0 0 24 24"
+          width={24}
+        >
+          <rect
+            fill="none"
+            height={24}
+            rx="0"
+            ry="0"
+            width={24}
+          />
+          <path
+            clipRule="evenodd"
+            d="M16.5737 13.8678L18.455 19.1499L15.935 17.6299C15.795 17.5499 15.625 17.5299 15.465 17.5699C15.305 17.6199 15.175 17.7299 15.095 17.8799L13.975 20.0999L12.7558 14.8696C12.6655 14.8365 12.5681 14.82 12.4652 14.82C12.2352 14.82 12.0152 14.92 11.8652 15.09C11.6382 15.3405 11.3637 15.5235 11.0656 15.6338L10.0251 20.0899L8.90513 17.8699C8.83513 17.7299 8.71513 17.6299 8.58513 17.5799C8.58513 17.5699 8.57513 17.5699 8.56513 17.5699C8.41513 17.5299 8.25513 17.5399 8.11513 17.6099C8.09513 17.6199 8.07513 17.6299 8.06513 17.6399L5.54513 19.1599L7.80508 12.8115C7.71074 12.7793 7.60805 12.7654 7.49517 12.77C7.17903 12.7883 6.8737 12.7337 6.59756 12.6176L3.84513 20.3299C3.76513 20.5699 3.83513 20.8399 4.03513 20.9999C4.23513 21.1599 4.50513 21.1799 4.72513 21.0499L8.13513 18.9899L9.71513 22.0999C9.82513 22.2999 10.0351 22.4299 10.2551 22.4299C10.2651 22.4299 10.2776 22.4274 10.2901 22.4249L10.2901 22.4249L10.2902 22.4249C10.3026 22.4224 10.3151 22.4199 10.3251 22.4199C10.5751 22.3899 10.7751 22.2099 10.8351 21.9599L11.9976 16.9136L13.175 21.9799C13.225 22.2299 13.435 22.4099 13.685 22.4399H13.755C13.975 22.4399 14.185 22.3099 14.275 22.0899L15.855 18.9799L19.265 21.0399C19.485 21.1699 19.755 21.1499 19.955 20.9899C20.155 20.8299 20.225 20.5599 20.145 20.3199L17.4626 12.7814C17.4535 12.781 17.4443 12.7805 17.4352 12.78C17.2052 12.77 16.9752 12.85 16.8152 13.02C16.6452 13.19 16.5652 13.4 16.5752 13.64C16.5787 13.7168 16.5782 13.7928 16.5737 13.8678ZM16.2748 11.9309C16.3414 11.8857 16.4108 11.8444 16.4822 11.8074C16.4798 11.8082 16.4774 11.809 16.475 11.8099C16.3985 11.837 16.3312 11.8788 16.2748 11.9309Z"
+            fill="#6A7587"
+            fillRule="evenodd"
+          />
+          <path
+            clipRule="evenodd"
+            d="M13.0752 15.0899C13.4752 15.5299 14.0052 15.7599 14.5652 15.7599C14.8252 15.7599 15.0952 15.7099 15.3352 15.6099C16.1352 15.2799 16.6152 14.5099 16.5752 13.6399C16.5652 13.3999 16.6452 13.1899 16.8152 13.0199C16.9752 12.8499 17.2052 12.7699 17.4352 12.7799C18.2952 12.8299 19.0752 12.3399 19.4052 11.5399C19.7352 10.7399 19.5352 9.84993 18.8952 9.26993C18.7252 9.10993 18.6252 8.88993 18.6252 8.65993C18.6252 8.42993 18.7252 8.20993 18.9052 8.04993C19.5452 7.46993 19.7452 6.57993 19.4152 5.77993C19.0852 4.97993 18.3052 4.49993 17.4452 4.53993C17.2152 4.54993 16.9952 4.46993 16.8252 4.29993C16.6652 4.13993 16.5752 3.91993 16.5852 3.67993C16.6352 2.80993 16.1452 2.03993 15.3452 1.70993C14.5652 1.38993 13.7052 1.56993 13.0752 2.22993C12.9152 2.39993 12.6952 2.49993 12.4652 2.49993C12.2352 2.49993 12.0252 2.39993 11.8652 2.22993C11.2852 1.58993 10.3952 1.38993 9.59517 1.71993C8.79517 2.04993 8.30517 2.81993 8.35517 3.67993C8.36517 3.90993 8.28517 4.12993 8.11517 4.29993C7.95517 4.46993 7.73517 4.53993 7.49517 4.53993C6.58517 4.48993 5.85517 4.97993 5.52517 5.77993C5.19517 6.57993 5.39517 7.46993 5.97517 7.97993C5.99517 8.00992 6.01517 8.02992 6.03517 8.04992L6.03517 8.04993C6.20517 8.20993 6.30517 8.42993 6.30517 8.65993C6.30517 8.88993 6.21517 9.10993 6.03517 9.25993C5.39517 9.83993 5.19517 10.7299 5.52517 11.5299C5.85517 12.3299 6.63517 12.8199 7.49517 12.7699C7.74517 12.7599 7.94517 12.8399 8.11517 13.0099C8.28517 13.1699 8.36517 13.3899 8.35517 13.6299C8.30517 14.4999 8.79517 15.2699 9.59517 15.5999C10.3952 15.9299 11.2852 15.7299 11.8652 15.0899C12.0152 14.9199 12.2352 14.8199 12.4652 14.8199C12.7052 14.8199 12.9152 14.9099 13.0752 15.0899ZM8.96517 12.1699C8.58517 11.7899 8.07517 11.5799 7.53517 11.5799H7.42517C6.88517 11.5999 6.68517 11.2099 6.63517 11.0799C6.58517 10.9599 6.44517 10.5199 6.84517 10.1599C7.27517 9.76993 7.51517 9.22993 7.51517 8.65993C7.51517 8.08993 7.27517 7.53993 6.91517 7.22993L6.84517 7.15993C6.44517 6.79993 6.58517 6.36993 6.63517 6.23993C6.68517 6.11993 6.89517 5.70993 7.43517 5.73993C8.00517 5.77993 8.55517 5.55993 8.96517 5.14993C9.36517 4.74993 9.58517 4.18993 9.55517 3.61993C9.52517 3.08993 9.92517 2.87993 10.0552 2.81993C10.1852 2.76993 10.6152 2.62993 10.9752 3.02993C11.3652 3.45993 11.9052 3.69993 12.4752 3.69993C13.0352 3.69993 13.5852 3.45993 13.9652 3.02993C14.3252 2.62993 14.7652 2.76993 14.8852 2.81993C15.0052 2.86993 15.4152 3.07993 15.3852 3.61993C15.3552 4.18993 15.5752 4.74993 15.9752 5.14993C16.3852 5.55993 16.9252 5.77993 17.5252 5.73993C18.0252 5.69993 18.2652 6.10993 18.3152 6.23993C18.3652 6.35993 18.5052 6.79993 18.1052 7.15993C17.6752 7.53993 17.4352 8.08993 17.4352 8.65993C17.4352 9.22993 17.6852 9.77993 18.1052 10.1599C18.5052 10.5199 18.3652 10.9499 18.3152 11.0799C18.2652 11.1999 18.0652 11.6099 17.5152 11.5799C16.9552 11.5499 16.3852 11.7699 15.9852 12.1699C15.5852 12.5699 15.3652 13.1299 15.3952 13.6999C15.4252 14.2399 15.0152 14.4499 14.8952 14.4999C14.7652 14.5499 14.3352 14.6899 13.9752 14.2899C13.5852 13.8599 13.0452 13.6199 12.4752 13.6199C11.9052 13.6199 11.3552 13.8699 10.9752 14.2899C10.6152 14.6899 10.1852 14.5499 10.0552 14.4999C9.93517 14.4499 9.52517 14.2399 9.55517 13.6999C9.58517 13.1299 9.36517 12.5699 8.96517 12.1699ZM9.125 8.66006C9.125 10.5101 10.625 12.0101 12.475 12.0101C14.315 12.0101 15.825 10.5101 15.825 8.66006C15.825 6.81006 14.325 5.31006 12.475 5.31006C10.625 5.31006 9.125 6.81006 9.125 8.66006ZM10.325 8.66006C10.325 7.47006 11.285 6.51006 12.475 6.51006C13.655 6.51006 14.625 7.47006 14.625 8.66006C14.625 9.85006 13.665 10.8101 12.475 10.8101C11.285 10.8101 10.325 9.85006 10.325 8.66006Z"
+            fill="#6A7587"
+            fillRule="evenodd"
+          />
+          <path
+            clipRule="evenodd"
+            d="M12.475 12.0101C10.625 12.0101 9.125 10.5101 9.125 8.66006C9.125 6.81006 10.625 5.31006 12.475 5.31006C14.325 5.31006 15.825 6.81006 15.825 8.66006C15.825 10.5101 14.315 12.0101 12.475 12.0101ZM12.475 6.51006C11.285 6.51006 10.325 7.47006 10.325 8.66006C10.325 9.85006 11.285 10.8101 12.475 10.8101C13.665 10.8101 14.625 9.85006 14.625 8.66006C14.625 7.47006 13.655 6.51006 12.475 6.51006Z"
+            fill="black"
+            fillOpacity="0.3"
+            fillRule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots organisms/Awards Basic Not Earned 1`] = `
+<div
+  css={
+    Object {
+      "map": undefined,
+      "name": "cz92cd",
+      "next": undefined,
+      "styles": "
+          font-size: 16px;
+          > div {
+            font-size: inherit;
+          }
+        ",
+      "toString": [Function],
+    }
+  }
+>
+  <div
+    className=""
+    style={Object {}}
+  >
+    <div
+      className=""
+      style={Object {}}
+    >
+      <div
+        css={
+          Object {
+            "map": undefined,
+            "name": "blk4bc",
+            "next": undefined,
+            "styles": "
+    p {
+      position: relative;
+      z-index: 100;
+      font-weight: 500;
+      color: #FF05A7;
+    }
+    width: 100%;
+    height: 100%;
+  ",
+            "toString": [Function],
+          }
+        }
+      >
+        <div
+          css={
+            Object {
+              "map": undefined,
+              "name": "1aonf1q",
+              "next": undefined,
+              "styles": "
+    width: 145px;
+    height: 145px;
+    border-radius: 12px;
+    transition: all 0.1s ease;
+    position: relative;
+    transform: scale(1);
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    cursor: pointer;
+    > div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      border-radius: inherit;
+    }
+  ",
+              "toString": [Function],
+            }
+          }
+        >
+          <div
+            css={
+              Object {
+                "map": undefined,
+                "name": "7fcjta",
+                "next": undefined,
+                "styles": "
+    filter: grayscale(100%) invert(35%) blur(1px);
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    &:before {
+      content: '';
+      border-radius: inherit;
+      display: block;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      pointer-events: none;
+      mix-blend-mode: initial;
+      opacity: initial;
+      background: initial;
+    }
+  ",
+                "toString": [Function],
+              }
+            }
+          >
+            <div
+              css={
+                Object {
+                  "map": undefined,
+                  "name": "v5wlkd",
+                  "next": undefined,
+                  "styles": "
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: inherit;
+    background-image: url(https://images.unsplash.com/photo-1558470598-a5dda9640f68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3151&q=80);
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    &::before {
+      content: '';
+      background: inherit;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 1;
+      position: absolute;
+      top: 16px;
+      transform: scale(0.9);
+      filter: blur(10px);
+      opacity: 0.88;
+      border-radius: inherit;
+    }
+    &::after {
+      content: '';
+      background: inherit;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 2;
+      position: absolute;
+      border-radius: inherit;
+    }
+  ",
+                  "toString": [Function],
+                }
+              }
+            />
+          </div>
+        </div>
+        <p />
+      </div>
+    </div>
+    <span
+      css={
+        Object {
+          "map": undefined,
+          "name": "dx1ijl",
+          "next": undefined,
+          "styles": "
+    display: inline;
+    font-family: Montserrat, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-style: normal;
+    line-height: ;
+    text-decoration: ;
+    font-size:1em;font-weight:500;color:#434A56;;
+  ",
+          "toString": [Function],
+        }
+      }
+    >
+      Award Title
+    </span>
+    <div
+      className=""
+      style={Object {}}
+    >
+      <div
+        css={
+          Object {
+            "map": undefined,
+            "name": "ueaybp",
+            "next": undefined,
+            "styles": "
+    display: flex;
+    align-items: center;
+    width: 100%;
+  ",
+            "toString": [Function],
+          }
+        }
+      >
+        <div
+          css={
+            Object {
+              "map": undefined,
+              "name": "r615rx",
+              "next": undefined,
+              "styles": "
+    background-color: #E7ECF3;
+    height: 8px;
+    position: relative;
+    width: 100%;
+    border-radius: 16px;
+    margin-right: 8px;
+    > div {
+      background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc);
+      width: 67%;
+      height: 100%;
+      position: relative;
+      border-radius: inherit;
+    }
+  ",
+              "toString": [Function],
+            }
+          }
+        >
+          <div />
+        </div>
+        <span
+          css={
+            Object {
+              "map": undefined,
+              "name": "1qsjom3",
+              "next": undefined,
+              "styles": "
+    display: inline;
+    font-family: Montserrat, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-style: normal;
+    line-height: ;
+    text-decoration: ;
+    font-size:1em;font-weight:500;color:#6A7587;;
+  ",
+              "toString": [Function],
+            }
+          }
+        >
+          67
+          %
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots organisms/Awards Expandable 1`] = `
+<div
+  css={
+    Object {
+      "map": undefined,
+      "name": "cz92cd",
+      "next": undefined,
+      "styles": "
+          font-size: 16px;
+          > div {
+            font-size: inherit;
+          }
+        ",
+      "toString": [Function],
+    }
+  }
+>
+  <main
+    className=""
+    onClick={[Function]}
+    style={Object {}}
+  >
+    <div
+      className=""
+      onClick={[Function]}
+      style={Object {}}
+    >
+      <div
+        className=""
+        style={Object {}}
+      >
+        <div
+          css={
+            Object {
+              "map": undefined,
+              "name": "blk4bc",
+              "next": undefined,
+              "styles": "
+    p {
+      position: relative;
+      z-index: 100;
+      font-weight: 500;
+      color: #FF05A7;
+    }
+    width: 100%;
+    height: 100%;
+  ",
+              "toString": [Function],
+            }
+          }
+        >
+          <div
+            css={
+              Object {
+                "map": undefined,
+                "name": "1aonf1q",
+                "next": undefined,
+                "styles": "
+    width: 145px;
+    height: 145px;
+    border-radius: 12px;
+    transition: all 0.1s ease;
+    position: relative;
+    transform: scale(1);
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    cursor: pointer;
+    > div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      border-radius: inherit;
+    }
+  ",
+                "toString": [Function],
+              }
+            }
+          >
+            <div
+              css={
+                Object {
+                  "map": undefined,
+                  "name": "7fcjta",
+                  "next": undefined,
+                  "styles": "
+    filter: grayscale(100%) invert(35%) blur(1px);
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    &:before {
+      content: '';
+      border-radius: inherit;
+      display: block;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      pointer-events: none;
+      mix-blend-mode: initial;
+      opacity: initial;
+      background: initial;
+    }
+  ",
+                  "toString": [Function],
+                }
+              }
+            >
+              <div
+                css={
+                  Object {
+                    "map": undefined,
+                    "name": "v5wlkd",
+                    "next": undefined,
+                    "styles": "
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: inherit;
+    background-image: url(https://images.unsplash.com/photo-1558470598-a5dda9640f68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3151&q=80);
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    &::before {
+      content: '';
+      background: inherit;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 1;
+      position: absolute;
+      top: 16px;
+      transform: scale(0.9);
+      filter: blur(10px);
+      opacity: 0.88;
+      border-radius: inherit;
+    }
+    &::after {
+      content: '';
+      background: inherit;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 2;
+      position: absolute;
+      border-radius: inherit;
+    }
+  ",
+                    "toString": [Function],
+                  }
+                }
+              />
+            </div>
+          </div>
+          <p />
+        </div>
+      </div>
+      <span
+        css={
+          Object {
+            "map": undefined,
+            "name": "dx1ijl",
+            "next": undefined,
+            "styles": "
+    display: inline;
+    font-family: Montserrat, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-style: normal;
+    line-height: ;
+    text-decoration: ;
+    font-size:1em;font-weight:500;color:#434A56;;
+  ",
+            "toString": [Function],
+          }
+        }
+      >
+        Award Title
+      </span>
+      <div
+        className=""
+        style={Object {}}
+      >
+        <div
+          css={
+            Object {
+              "map": undefined,
+              "name": "ueaybp",
+              "next": undefined,
+              "styles": "
+    display: flex;
+    align-items: center;
+    width: 100%;
+  ",
+              "toString": [Function],
+            }
+          }
+        >
+          <div
+            css={
+              Object {
+                "map": undefined,
+                "name": "r615rx",
+                "next": undefined,
+                "styles": "
+    background-color: #E7ECF3;
+    height: 8px;
+    position: relative;
+    width: 100%;
+    border-radius: 16px;
+    margin-right: 8px;
+    > div {
+      background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff, #34aadc);
+      width: 67%;
+      height: 100%;
+      position: relative;
+      border-radius: inherit;
+    }
+  ",
+                "toString": [Function],
+              }
+            }
+          >
+            <div />
+          </div>
+          <span
+            css={
+              Object {
+                "map": undefined,
+                "name": "1qsjom3",
+                "next": undefined,
+                "styles": "
+    display: inline;
+    font-family: Montserrat, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-style: normal;
+    line-height: ;
+    text-decoration: ;
+    font-size:1em;font-weight:500;color:#6A7587;;
+  ",
+                "toString": [Function],
+              }
+            }
+          >
+            67
+            %
+          </span>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`Storyshots organisms/Awards Incremental Earned 1`] = `
+<div
+  css={
+    Object {
+      "map": undefined,
+      "name": "cz92cd",
+      "next": undefined,
+      "styles": "
+          font-size: 16px;
+          > div {
+            font-size: inherit;
+          }
+        ",
+      "toString": [Function],
+    }
+  }
+>
+  <div
+    className=""
+    style={Object {}}
+  >
+    <div
+      className=""
+      style={Object {}}
+    >
+      <div
+        css={
+          Object {
+            "map": undefined,
+            "name": "blk4bc",
+            "next": undefined,
+            "styles": "
+    p {
+      position: relative;
+      z-index: 100;
+      font-weight: 500;
+      color: #FF05A7;
+    }
+    width: 100%;
+    height: 100%;
+  ",
+            "toString": [Function],
+          }
+        }
+      >
+        <div
+          css={
+            Object {
+              "map": undefined,
+              "name": "1aonf1q",
+              "next": undefined,
+              "styles": "
+    width: 145px;
+    height: 145px;
+    border-radius: 12px;
+    transition: all 0.1s ease;
+    position: relative;
+    transform: scale(1);
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    cursor: pointer;
+    > div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      border-radius: inherit;
+    }
+  ",
+              "toString": [Function],
+            }
+          }
+        >
+          <div
+            css={
+              Object {
+                "map": undefined,
+                "name": "1bikyof",
+                "next": undefined,
+                "styles": "
+    filter: initial;
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    &:before {
+      content: '';
+      border-radius: inherit;
+      display: block;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      pointer-events: none;
+      mix-blend-mode: initial;
+      opacity: initial;
+      background: initial;
+    }
+  ",
+                "toString": [Function],
+              }
+            }
+          >
+            <div
+              css={
+                Object {
+                  "map": undefined,
+                  "name": "v5wlkd",
+                  "next": undefined,
+                  "styles": "
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: inherit;
+    background-image: url(https://images.unsplash.com/photo-1558470598-a5dda9640f68?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3151&q=80);
+    transition-timing-function: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    &::before {
+      content: '';
+      background: inherit;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 1;
+      position: absolute;
+      top: 16px;
+      transform: scale(0.9);
+      filter: blur(10px);
+      opacity: 0.88;
+      border-radius: inherit;
+    }
+    &::after {
+      content: '';
+      background: inherit;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 2;
+      position: absolute;
+      border-radius: inherit;
+    }
+  ",
+                  "toString": [Function],
+                }
+              }
+            />
+          </div>
+        </div>
+        <p />
+      </div>
+    </div>
+    <span
+      css={
+        Object {
+          "map": undefined,
+          "name": "dx1ijl",
+          "next": undefined,
+          "styles": "
+    display: inline;
+    font-family: Montserrat, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-style: normal;
+    line-height: ;
+    text-decoration: ;
+    font-size:1em;font-weight:500;color:#434A56;;
+  ",
+          "toString": [Function],
+        }
+      }
+    >
+      Award Title
+    </span>
+    <div
+      className=""
+      style={Object {}}
+    >
+      <div
+        className=""
+        style={Object {}}
+      >
+        <span
+          className=""
+          onClick={[Function]}
+          style={Object {}}
+        >
+          <svg
+            height={28}
+            viewBox=" 0 0 24 24"
+            width={28}
+          >
+            <rect
+              fill="none"
+              height={28}
+              rx="0"
+              ry="0"
+              width={28}
+            />
+            <path
+              clipRule="evenodd"
+              d="M16.5737 13.8678L18.455 19.1499L15.935 17.6299C15.795 17.5499 15.625 17.5299 15.465 17.5699C15.305 17.6199 15.175 17.7299 15.095 17.8799L13.975 20.0999L12.7558 14.8696C12.6655 14.8365 12.5681 14.82 12.4652 14.82C12.2352 14.82 12.0152 14.92 11.8652 15.09C11.6382 15.3405 11.3637 15.5235 11.0656 15.6338L10.0251 20.0899L8.90513 17.8699C8.83513 17.7299 8.71513 17.6299 8.58513 17.5799C8.58513 17.5699 8.57513 17.5699 8.56513 17.5699C8.41513 17.5299 8.25513 17.5399 8.11513 17.6099C8.09513 17.6199 8.07513 17.6299 8.06513 17.6399L5.54513 19.1599L7.80508 12.8115C7.71074 12.7793 7.60805 12.7654 7.49517 12.77C7.17903 12.7883 6.8737 12.7337 6.59756 12.6176L3.84513 20.3299C3.76513 20.5699 3.83513 20.8399 4.03513 20.9999C4.23513 21.1599 4.50513 21.1799 4.72513 21.0499L8.13513 18.9899L9.71513 22.0999C9.82513 22.2999 10.0351 22.4299 10.2551 22.4299C10.2651 22.4299 10.2776 22.4274 10.2901 22.4249L10.2901 22.4249L10.2902 22.4249C10.3026 22.4224 10.3151 22.4199 10.3251 22.4199C10.5751 22.3899 10.7751 22.2099 10.8351 21.9599L11.9976 16.9136L13.175 21.9799C13.225 22.2299 13.435 22.4099 13.685 22.4399H13.755C13.975 22.4399 14.185 22.3099 14.275 22.0899L15.855 18.9799L19.265 21.0399C19.485 21.1699 19.755 21.1499 19.955 20.9899C20.155 20.8299 20.225 20.5599 20.145 20.3199L17.4626 12.7814C17.4535 12.781 17.4443 12.7805 17.4352 12.78C17.2052 12.77 16.9752 12.85 16.8152 13.02C16.6452 13.19 16.5652 13.4 16.5752 13.64C16.5787 13.7168 16.5782 13.7928 16.5737 13.8678ZM16.2748 11.9309C16.3414 11.8857 16.4108 11.8444 16.4822 11.8074C16.4798 11.8082 16.4774 11.809 16.475 11.8099C16.3985 11.837 16.3312 11.8788 16.2748 11.9309Z"
+              fill="#00FF6A"
+              fillRule="evenodd"
+            />
+            <path
+              clipRule="evenodd"
+              d="M13.0752 15.0899C13.4752 15.5299 14.0052 15.7599 14.5652 15.7599C14.8252 15.7599 15.0952 15.7099 15.3352 15.6099C16.1352 15.2799 16.6152 14.5099 16.5752 13.6399C16.5652 13.3999 16.6452 13.1899 16.8152 13.0199C16.9752 12.8499 17.2052 12.7699 17.4352 12.7799C18.2952 12.8299 19.0752 12.3399 19.4052 11.5399C19.7352 10.7399 19.5352 9.84993 18.8952 9.26993C18.7252 9.10993 18.6252 8.88993 18.6252 8.65993C18.6252 8.42993 18.7252 8.20993 18.9052 8.04993C19.5452 7.46993 19.7452 6.57993 19.4152 5.77993C19.0852 4.97993 18.3052 4.49993 17.4452 4.53993C17.2152 4.54993 16.9952 4.46993 16.8252 4.29993C16.6652 4.13993 16.5752 3.91993 16.5852 3.67993C16.6352 2.80993 16.1452 2.03993 15.3452 1.70993C14.5652 1.38993 13.7052 1.56993 13.0752 2.22993C12.9152 2.39993 12.6952 2.49993 12.4652 2.49993C12.2352 2.49993 12.0252 2.39993 11.8652 2.22993C11.2852 1.58993 10.3952 1.38993 9.59517 1.71993C8.79517 2.04993 8.30517 2.81993 8.35517 3.67993C8.36517 3.90993 8.28517 4.12993 8.11517 4.29993C7.95517 4.46993 7.73517 4.53993 7.49517 4.53993C6.58517 4.48993 5.85517 4.97993 5.52517 5.77993C5.19517 6.57993 5.39517 7.46993 5.97517 7.97993C5.99517 8.00992 6.01517 8.02992 6.03517 8.04992L6.03517 8.04993C6.20517 8.20993 6.30517 8.42993 6.30517 8.65993C6.30517 8.88993 6.21517 9.10993 6.03517 9.25993C5.39517 9.83993 5.19517 10.7299 5.52517 11.5299C5.85517 12.3299 6.63517 12.8199 7.49517 12.7699C7.74517 12.7599 7.94517 12.8399 8.11517 13.0099C8.28517 13.1699 8.36517 13.3899 8.35517 13.6299C8.30517 14.4999 8.79517 15.2699 9.59517 15.5999C10.3952 15.9299 11.2852 15.7299 11.8652 15.0899C12.0152 14.9199 12.2352 14.8199 12.4652 14.8199C12.7052 14.8199 12.9152 14.9099 13.0752 15.0899ZM8.96517 12.1699C8.58517 11.7899 8.07517 11.5799 7.53517 11.5799H7.42517C6.88517 11.5999 6.68517 11.2099 6.63517 11.0799C6.58517 10.9599 6.44517 10.5199 6.84517 10.1599C7.27517 9.76993 7.51517 9.22993 7.51517 8.65993C7.51517 8.08993 7.27517 7.53993 6.91517 7.22993L6.84517 7.15993C6.44517 6.79993 6.58517 6.36993 6.63517 6.23993C6.68517 6.11993 6.89517 5.70993 7.43517 5.73993C8.00517 5.77993 8.55517 5.55993 8.96517 5.14993C9.36517 4.74993 9.58517 4.18993 9.55517 3.61993C9.52517 3.08993 9.92517 2.87993 10.0552 2.81993C10.1852 2.76993 10.6152 2.62993 10.9752 3.02993C11.3652 3.45993 11.9052 3.69993 12.4752 3.69993C13.0352 3.69993 13.5852 3.45993 13.9652 3.02993C14.3252 2.62993 14.7652 2.76993 14.8852 2.81993C15.0052 2.86993 15.4152 3.07993 15.3852 3.61993C15.3552 4.18993 15.5752 4.74993 15.9752 5.14993C16.3852 5.55993 16.9252 5.77993 17.5252 5.73993C18.0252 5.69993 18.2652 6.10993 18.3152 6.23993C18.3652 6.35993 18.5052 6.79993 18.1052 7.15993C17.6752 7.53993 17.4352 8.08993 17.4352 8.65993C17.4352 9.22993 17.6852 9.77993 18.1052 10.1599C18.5052 10.5199 18.3652 10.9499 18.3152 11.0799C18.2652 11.1999 18.0652 11.6099 17.5152 11.5799C16.9552 11.5499 16.3852 11.7699 15.9852 12.1699C15.5852 12.5699 15.3652 13.1299 15.3952 13.6999C15.4252 14.2399 15.0152 14.4499 14.8952 14.4999C14.7652 14.5499 14.3352 14.6899 13.9752 14.2899C13.5852 13.8599 13.0452 13.6199 12.4752 13.6199C11.9052 13.6199 11.3552 13.8699 10.9752 14.2899C10.6152 14.6899 10.1852 14.5499 10.0552 14.4999C9.93517 14.4499 9.52517 14.2399 9.55517 13.6999C9.58517 13.1299 9.36517 12.5699 8.96517 12.1699ZM9.125 8.66006C9.125 10.5101 10.625 12.0101 12.475 12.0101C14.315 12.0101 15.825 10.5101 15.825 8.66006C15.825 6.81006 14.325 5.31006 12.475 5.31006C10.625 5.31006 9.125 6.81006 9.125 8.66006ZM10.325 8.66006C10.325 7.47006 11.285 6.51006 12.475 6.51006C13.655 6.51006 14.625 7.47006 14.625 8.66006C14.625 9.85006 13.665 10.8101 12.475 10.8101C11.285 10.8101 10.325 9.85006 10.325 8.66006Z"
+              fill="#00FF6A"
+              fillRule="evenodd"
+            />
+            <path
+              clipRule="evenodd"
+              d="M12.475 12.0101C10.625 12.0101 9.125 10.5101 9.125 8.66006C9.125 6.81006 10.625 5.31006 12.475 5.31006C14.325 5.31006 15.825 6.81006 15.825 8.66006C15.825 10.5101 14.315 12.0101 12.475 12.0101ZM12.475 6.51006C11.285 6.51006 10.325 7.47006 10.325 8.66006C10.325 9.85006 11.285 10.8101 12.475 10.8101C13.665 10.8101 14.625 9.85006 14.625 8.66006C14.625 7.47006 13.655 6.51006 12.475 6.51006Z"
+              fill="black"
+              fillOpacity="0.3"
+              fillRule="evenodd"
+            />
+          </svg>
+        </span>
+        <span
+          css={
+            Object {
+              "map": undefined,
+              "name": "1wpvd2c",
+              "next": undefined,
+              "styles": "
+    display: inline;
+    font-family: Montserrat, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-style: italic;
+    line-height: ;
+    text-decoration: ;
+    font-size:0.75em;font-weight:500;color:#6A7587;;
+  ",
+              "toString": [Function],
+            }
+          }
+        >
+          Title here: 3
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
