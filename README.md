@@ -83,6 +83,7 @@ Next up: initialize ShadCN (`npx shadcn-ui@latest init`) once the component dire
   - `Tabs` (`src/components/ui/tabs.tsx`)
   - `ScrollArea` (`src/components/ui/scroll-area.tsx`)
 - Documentation playground utilities live in `src/components/docs/` (e.g., `ComponentExample`, `CodeBlock`) and compose local UI primitives (`Tabs`, `Card`) to render preview/code panels.
+- Theme toggle (`ThemeToggle`) persists preference to `localStorage` and syncs with OS defaults, applying `dark` class on the root element.
 - Local `Slot` helper (`src/lib/slot.tsx`) mimics `@radix-ui/react-slot` so `asChild` support works without an extra dependency.
 - Use the CLI to add more pieces: `npx shadcn@latest add <component>` (Button is already tracked in `components.json`).
 - Import primitives with the new alias (`@/components/ui/...`) coordinated between `tsconfig` and `vite.config.ts`.

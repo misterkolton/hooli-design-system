@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { Copy, CopyCheck } from 'lucide-react'
+
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -39,9 +41,14 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
           variant="ghost"
           size="sm"
           onClick={handleCopy}
-          className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground"
+          className="h-7 px-2 text-muted-foreground hover:text-foreground"
         >
-          {copied ? 'Copied' : 'Copy'}
+          {copied ? (
+            <CopyCheck className="h-4 w-4" aria-hidden="true" />
+          ) : (
+            <Copy className="h-4 w-4" aria-hidden="true" />
+          )}
+          <span className="sr-only">{copied ? 'Copied' : 'Copy code'}</span>
         </Button>
       </div>
       <pre className="max-h-[400px] overflow-auto px-4 py-4 text-[0.8rem] leading-6">

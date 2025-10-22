@@ -1,4 +1,7 @@
+import * as React from 'react'
+
 import { ComponentExample } from '@/components/docs/component-example'
+import { ThemeToggle } from '@/components/docs/theme-toggle'
 import { Button } from '@/components/ui/button'
 
 const buttonVariantsPreview = (
@@ -101,30 +104,86 @@ export function ButtonComposition() {
   )
 }`
 
+type ThemeMode = 'light' | 'dark'
+const THEME_STORAGE_KEY = 'hooli-theme'
+
 export default function App() {
+  const [theme, setTheme] = React.useState<ThemeMode>('light')
+
+  React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const stored = window.localStorage.getItem(THEME_STORAGE_KEY)
+    if (stored === 'dark' || stored === 'light') {
+      setTheme(stored)
+      return
+    }
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    setTheme(mediaQuery.matches ? 'dark' : 'light')
+
+    const listener = (event: MediaQueryListEvent) => {
+      setTheme(event.matches ? 'dark' : 'light')
+    }
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', listener)
+      return () => mediaQuery.removeEventListener('change', listener)
+    }
+
+    if (typeof mediaQuery.addListener === 'function') {
+      mediaQuery.addListener(listener)
+      return () => mediaQuery.removeListener(listener)
+    }
+
+    return undefined
+  }, [])
+
+  React.useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const root = document.documentElement
+    root.classList.toggle('dark', theme === 'dark')
+    root.setAttribute('data-theme', theme)
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme)
+  }, [theme])
+
+  const toggleTheme = React.useCallback(() => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
+  }, [])
+
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-background transition-colors">
       <div className="mx-auto flex max-w-6xl flex-col gap-16 px-6 pb-24 pt-16">
-        <header className="space-y-4 text-center">
-          <span className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-blue-600">
-            Hooli Design System
-          </span>
-          <h1 className="text-3xl font-semibold text-slate-900 md:text-4xl">
-            Component Documentation Playground
-          </h1>
-          <p className="mx-auto max-w-3xl text-sm text-slate-600 md:text-base">
-            A guided preview of the rebuilt ShadCN-powered component library. Each
-            section highlights atomic components, their variants, and recommended
-            usage patterns as we translate the legacy QDS experience.
-          </p>
+        <header className="space-y-6">
+          <div className="flex items-center justify-between gap-4">
+            <span className="inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-blue-600 dark:border-blue-500/40 dark:bg-blue-500/10 dark:text-blue-200">
+              Hooli Design System
+            </span>
+            <ThemeToggle mode={theme} onToggle={toggleTheme} />
+          </div>
+          <div className="space-y-4 text-center">
+            <h1 className="text-3xl font-semibold text-foreground md:text-4xl">
+              Component Documentation Playground
+            </h1>
+            <p className="mx-auto max-w-3xl text-sm text-muted-foreground md:text-base">
+              A guided preview of the rebuilt ShadCN-powered component library. Each section
+              highlights atomic components, their variants, and recommended usage patterns as we
+              translate the legacy QDS experience.
+            </p>
+          </div>
         </header>
 
         <section className="space-y-10">
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-slate-900">Button</h2>
-            <p className="text-sm text-slate-600 md:text-base">
-              ShadCN button primitives enriched with the legacy QDS semantic palette.
-              Reference these examples when mapping old button usages to the new stack.
+            <h2 className="text-2xl font-semibold text-foreground">Button</h2>
+            <p className="text-sm text-muted-foreground md:text-base">
+              ShadCN button primitives enriched with the legacy QDS semantic palette. Reference
+              these examples when mapping old button usages to the new stack.
             </p>
           </div>
 
