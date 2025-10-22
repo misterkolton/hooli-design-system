@@ -45,3 +45,17 @@ The rebuilt library maintains functional alignment with the existing QDS compone
 ---
 
 ## Project Structure
+
+- `src/` – React 18 + Vite application entry point for rebuilding atoms/molecules.
+- `public/` – Static assets served by Vite.
+- `legacy-monorepo/` – Archived QDS Lerna workspace kept for reference during the migration.
+
+---
+
+## Getting Started
+
+1. Ensure you are using Node.js `v22.14.0` (matches `.nvmrc`) to satisfy Vite 7 + ESLint engine requirements.
+2. Install dependencies with `npm install`.
+3. Launch the dev server using `npm run dev`.
+
+The initial screen confirms the new scaffold is running. From here you can integrate TailwindCSS, ShadCN components, and begin porting QDS atoms into the `src` tree.
