@@ -1,6 +1,7 @@
+import { Button } from '@/components/ui/button'
 import type { CSSProperties } from 'react'
 
-import { Button } from '@/components/ui/button'
+
 
 const fallbackMainStyles: CSSProperties = {
   minHeight: '100vh',
@@ -58,32 +59,17 @@ const fallbackChipStyles: CSSProperties = {
   color: '#64748b',
 }
 
-const fallbackPrimaryButtonStyles: CSSProperties = {
+const fallbackButtonBase: CSSProperties = {
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
   padding: '0.65rem 1.25rem',
   borderRadius: '0.75rem',
-  border: '1px solid transparent',
-  backgroundColor: '#2563eb',
-  color: '#f8fafc',
+  gap: '0.5rem',
   fontWeight: 600,
   fontSize: '0.95rem',
   cursor: 'pointer',
-  transition: 'background-color 150ms ease-in-out',
-}
-
-const fallbackSecondaryButtonStyles: CSSProperties = {
-  ...fallbackPrimaryButtonStyles,
-  backgroundColor: '#e2e8f0',
-  color: '#1e293b',
-}
-
-const fallbackOutlineButtonStyles: CSSProperties = {
-  ...fallbackPrimaryButtonStyles,
-  backgroundColor: 'transparent',
-  color: '#1e293b',
-  border: '1px solid rgba(148, 163, 184, 0.6)',
+  transition: 'all 150ms ease-in-out',
 }
 
 export default function App() {
@@ -132,17 +118,66 @@ export default function App() {
             Plan component migration
           </div>
         </div>
-        <div className="flex flex-wrap justify-center gap-3 pt-4">
-          <Button style={fallbackPrimaryButtonStyles}>Primary</Button>
-          <Button
-            variant="secondary"
-            style={fallbackSecondaryButtonStyles}
-          >
-            Secondary
-          </Button>
-          <Button variant="outline" style={fallbackOutlineButtonStyles}>
-            Outline
-          </Button>
+        <div className="flex flex-col gap-6 pt-6">
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button style={fallbackButtonBase}>Primary</Button>
+            <Button variant="secondary" style={fallbackButtonBase}>
+              Secondary
+            </Button>
+            <Button variant="accent" style={fallbackButtonBase}>
+              Accent
+            </Button>
+            <Button variant="success" style={fallbackButtonBase}>
+              Success
+            </Button>
+            <Button variant="warning" style={fallbackButtonBase}>
+              Warning
+            </Button>
+            <Button variant="danger" style={fallbackButtonBase}>
+              Danger
+            </Button>
+            <Button variant="smoke" style={fallbackButtonBase}>
+              Smoke
+            </Button>
+            <Button variant="shadow" style={fallbackButtonBase}>
+              Shadow
+            </Button>
+            <Button variant="outline" style={fallbackButtonBase}>
+              Outline
+            </Button>
+            <Button variant="subtle" style={fallbackButtonBase}>
+              Subtle
+            </Button>
+            <Button variant="ghost" style={fallbackButtonBase}>
+              Ghost
+            </Button>
+            <Button variant="link" style={fallbackButtonBase}>
+              Link
+            </Button>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button size="sm" style={fallbackButtonBase}>
+              Small
+            </Button>
+            <Button style={fallbackButtonBase}>Default</Button>
+            <Button size="lg" style={fallbackButtonBase}>
+              Large
+            </Button>
+            <Button size="xl" style={fallbackButtonBase}>
+              Extra Large
+            </Button>
+            <Button size="icon" style={fallbackButtonBase} aria-label="Icon">
+              <span className="sr-only">Icon button</span>🔍
+            </Button>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button asChild style={fallbackButtonBase}>
+              <a href="#cta">As Child Link</a>
+            </Button>
+            <Button disabled style={fallbackButtonBase}>
+              Disabled
+            </Button>
+          </div>
         </div>
       </section>
     </main>
