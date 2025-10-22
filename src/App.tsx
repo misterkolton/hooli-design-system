@@ -1,5 +1,7 @@
 import type { CSSProperties } from 'react'
 
+import { Button } from '@/components/ui/button'
+
 const fallbackMainStyles: CSSProperties = {
   minHeight: '100vh',
   display: 'flex',
@@ -56,10 +58,38 @@ const fallbackChipStyles: CSSProperties = {
   color: '#64748b',
 }
 
+const fallbackPrimaryButtonStyles: CSSProperties = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '0.65rem 1.25rem',
+  borderRadius: '0.75rem',
+  border: '1px solid transparent',
+  backgroundColor: '#2563eb',
+  color: '#f8fafc',
+  fontWeight: 600,
+  fontSize: '0.95rem',
+  cursor: 'pointer',
+  transition: 'background-color 150ms ease-in-out',
+}
+
+const fallbackSecondaryButtonStyles: CSSProperties = {
+  ...fallbackPrimaryButtonStyles,
+  backgroundColor: '#e2e8f0',
+  color: '#1e293b',
+}
+
+const fallbackOutlineButtonStyles: CSSProperties = {
+  ...fallbackPrimaryButtonStyles,
+  backgroundColor: 'transparent',
+  color: '#1e293b',
+  border: '1px solid rgba(148, 163, 184, 0.6)',
+}
+
 export default function App() {
   return (
     <main
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 px-6 py-16 w-100%"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-slate-50 px-6 py-16"
       style={fallbackMainStyles}
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.2),_transparent_60%)]" />
@@ -101,6 +131,18 @@ export default function App() {
           >
             Plan component migration
           </div>
+        </div>
+        <div className="flex flex-wrap justify-center gap-3 pt-4">
+          <Button style={fallbackPrimaryButtonStyles}>Primary</Button>
+          <Button
+            variant="secondary"
+            style={fallbackSecondaryButtonStyles}
+          >
+            Secondary
+          </Button>
+          <Button variant="outline" style={fallbackOutlineButtonStyles}>
+            Outline
+          </Button>
         </div>
       </section>
     </main>

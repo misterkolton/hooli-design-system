@@ -47,6 +47,8 @@ The rebuilt library maintains functional alignment with the existing QDS compone
 ## Project Structure
 
 - `src/` – React 18 + Vite application entry point for rebuilding atoms/molecules.
+- `src/components/ui/` – ShadCN-style primitives (e.g. `button.tsx`).
+- `src/lib/` – Shared helpers like `utils.ts` and `slot.tsx` that back the UI primitives.
 - `public/` – Static assets served by Vite.
 - `legacy-monorepo/` – Archived QDS Lerna workspace kept for reference during the migration.
 
@@ -70,3 +72,12 @@ The initial screen confirms the new scaffold is running. From here you can integ
 - When migrating legacy QDS pieces, create primitives in `src/components` and use Tailwind utilities (or future ShadCN wrappers) for rapid styling.
 
 Next up: initialize ShadCN (`npx shadcn-ui@latest init`) once the component directory layout is ready, then start migrating high-impact atoms (Button, Input, etc.).
+
+---
+
+## ShadCN Components
+
+- `Button` component (`src/components/ui/button.tsx`) implements the standard ShadCN API with variants (`default`, `secondary`, `destructive`, etc.) and sizes (`default`, `sm`, `lg`, `xl`, `icon`).
+- Local `Slot` helper (`src/lib/slot.tsx`) mimics `@radix-ui/react-slot` so `asChild` support works without an extra dependency.
+- Use the CLI to add more pieces: `npx shadcn@latest add <component>` (Button is already tracked in `components.json`).
+- Import primitives with the new alias (`@/components/ui/...`) coordinated between `tsconfig` and `vite.config.ts`.
