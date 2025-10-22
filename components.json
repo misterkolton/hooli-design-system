@@ -23,6 +23,18 @@
     {
       "name": "button",
       "path": "src/components/ui/button.tsx"
+    },
+    {
+      "name": "card",
+      "path": "src/components/ui/card.tsx"
+    },
+    {
+      "name": "tabs",
+      "path": "src/components/ui/tabs.tsx"
+    },
+    {
+      "name": "scroll-area",
+      "path": "src/components/ui/scroll-area.tsx"
     }
   ]
 }
