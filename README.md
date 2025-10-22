@@ -59,3 +59,14 @@ The rebuilt library maintains functional alignment with the existing QDS compone
 3. Launch the dev server using `npm run dev`.
 
 The initial screen confirms the new scaffold is running. From here you can integrate TailwindCSS, ShadCN components, and begin porting QDS atoms into the `src` tree.
+
+---
+
+## TailwindCSS Setup
+
+- Tailwind 3.4 is already installed with PostCSS + Autoprefixer and configured via `tailwind.config.js`.
+- Global directives live in `src/index.css`; remove/evolve utility classes there to establish tokens and base styles.
+- Components can now lean on Tailwind utility classes. Example wiring lives in `src/App.tsx`.
+- When migrating legacy QDS pieces, create primitives in `src/components` and use Tailwind utilities (or future ShadCN wrappers) for rapid styling.
+
+Next up: initialize ShadCN (`npx shadcn-ui@latest init`) once the component directory layout is ready, then start migrating high-impact atoms (Button, Input, etc.).
