@@ -21,6 +21,22 @@
   "registries": {},
   "components": [
     {
+      "name": "animated-checkmark",
+      "path": "src/components/ui/animated-checkmark.tsx"
+    },
+    {
+      "name": "badge",
+      "path": "src/components/ui/badge.tsx"
+    },
+    {
+      "name": "avatar",
+      "path": "src/components/ui/avatar.tsx"
+    },
+    {
+      "name": "anchor",
+      "path": "src/components/ui/anchor.tsx"
+    },
+    {
       "name": "button",
       "path": "src/components/ui/button.tsx"
     },
