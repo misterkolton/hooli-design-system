@@ -77,7 +77,13 @@ Next up: initialize ShadCN (`npx shadcn-ui@latest init`) once the component dire
 
 ## ShadCN Components
 
-- `Button` component (`src/components/ui/button.tsx`) implements the standard ShadCN API with variants (`default`, `secondary`, `destructive`, etc.) and sizes (`default`, `sm`, `lg`, `xl`, `icon`).
+- `Button` component (`src/components/ui/button.tsx`) implements the standard ShadCN API with QDS-aligned variants (`primary`, `secondary`, `accent`, `success`, `warning`, `danger`, `smoke`, `shadow`, etc.) and the Vite scaffold sizes (`default`, `sm`, `lg`, `xl`, `icon`).
+- Additional primitives currently ported:
+  - `Card` (`src/components/ui/card.tsx`)
+  - `Tabs` (`src/components/ui/tabs.tsx`)
+  - `ScrollArea` (`src/components/ui/scroll-area.tsx`)
+- Documentation playground utilities live in `src/components/docs/` (e.g., `ComponentExample`, `CodeBlock`) and compose local UI primitives (`Tabs`, `Card`) to render preview/code panels.
+- Theme toggle (`ThemeToggle`) persists preference to `localStorage` and syncs with OS defaults, applying `dark` class on the root element.
 - Local `Slot` helper (`src/lib/slot.tsx`) mimics `@radix-ui/react-slot` so `asChild` support works without an extra dependency.
 - Use the CLI to add more pieces: `npx shadcn@latest add <component>` (Button is already tracked in `components.json`).
 - Import primitives with the new alias (`@/components/ui/...`) coordinated between `tsconfig` and `vite.config.ts`.

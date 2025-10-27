@@ -21,8 +21,36 @@
   "registries": {},
   "components": [
     {
+      "name": "animated-checkmark",
+      "path": "src/components/ui/animated-checkmark.tsx"
+    },
+    {
+      "name": "badge",
+      "path": "src/components/ui/badge.tsx"
+    },
+    {
+      "name": "avatar",
+      "path": "src/components/ui/avatar.tsx"
+    },
+    {
+      "name": "anchor",
+      "path": "src/components/ui/anchor.tsx"
+    },
+    {
       "name": "button",
       "path": "src/components/ui/button.tsx"
+    },
+    {
+      "name": "card",
+      "path": "src/components/ui/card.tsx"
+    },
+    {
+      "name": "tabs",
+      "path": "src/components/ui/tabs.tsx"
+    },
+    {
+      "name": "scroll-area",
+      "path": "src/components/ui/scroll-area.tsx"
     }
   ]
 }
