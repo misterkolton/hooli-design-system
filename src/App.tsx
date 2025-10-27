@@ -10,6 +10,7 @@ import { Anchor } from '@/components/ui/anchor'
 import { Avatar } from '@/components/ui/avatar'
 import { AnimatedCheckmark } from '@/components/ui/animated-checkmark'
 import { Badge } from '@/components/ui/badge'
+import { Bar } from '@/components/ui/bar'
 import { Bell } from 'lucide-react'
 import { Menu, X } from 'lucide-react'
 
@@ -169,6 +170,23 @@ const badgePreview = (
 )
 
 const badgeCode = `import { Badge } from \"@/components/ui/badge\"\nimport { Bell } from \"lucide-react\"\n\nexport function BadgeExamples() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-4\">\n      <Badge item={1} />\n      <Badge item={9} />\n      <Badge item={12} />\n      <Badge>New</Badge>\n      <Badge tone=\"secondary\">Beta</Badge>\n      <Badge tone=\"success\">Live</Badge>\n      <Badge tone=\"warning\">Warn</Badge>\n      <Badge tone=\"danger\">Fail</Badge>\n      <Badge icon={<Bell className=\"h-3 w-3\" aria-hidden />} >Alert</Badge>\n    </div>\n  )\n}`
+
+const barPreview = (
+  <div className="flex flex-col gap-4">
+    <div className="flex items-center gap-3">
+      <Bar width={64} height={8} tone="muted" />
+      <Bar width={128} height={8} tone="primary" />
+      <Bar width={192} height={8} tone="success" />
+    </div>
+    <div className="flex items-end gap-3" style={{ height: 80 }}>
+      <Bar width={8} height={24} tone="danger" />
+      <Bar width={8} height={40} tone="warning" />
+      <Bar width={8} height={64} tone="accent" />
+    </div>
+  </div>
+)
+
+const barCode = `import { Bar } from "@/components/ui/bar"\n\nexport function BarExamples() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <div className=\"flex items-center gap-3\">\n        <Bar width={64} height={8} tone=\"muted\" />\n        <Bar width={128} height={8} tone=\"primary\" />\n        <Bar width={192} height={8} tone=\"success\" />\n      </div>\n      <div className=\"flex items-end gap-3\" style={{ height: 80 }}>\n        <Bar width={8} height={24} tone=\"danger\" />\n        <Bar width={8} height={40} tone=\"warning\" />\n        <Bar width={8} height={64} tone=\"accent\" />\n      </div>\n    </div>\n  )\n}`
 
 type ThemeMode = 'light' | 'dark'
 const THEME_STORAGE_KEY = 'hooli-theme'
@@ -405,7 +423,7 @@ export default function App() {
           </section>
 
           {ALL_COMPONENT_ITEMS.filter((i) =>
-            i.slug !== 'button' && i.slug !== 'anchor' && i.slug !== 'animatedCheckMark' && i.slug !== 'avatar' && i.slug !== 'badge',
+            i.slug !== 'button' && i.slug !== 'anchor' && i.slug !== 'animatedCheckMark' && i.slug !== 'avatar' && i.slug !== 'badge' && i.slug !== 'bar',
           ).map((item) => (
             <section className="space-y-6" id={item.slug} key={item.slug}>
               <div className="space-y-2">
@@ -421,6 +439,23 @@ export default function App() {
               />
             </section>
           ))}
+          
+          <section className="space-y-10" id="bar">
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Bar</h2>
+              <p className="text-sm text-muted-foreground md:text-base">
+                Simple rectangular blocks useful for charts and separators. Accepts width/height in
+                px or CSS units and supports tone or custom background colors for legacy parity.
+              </p>
+            </div>
+
+            <ComponentExample
+              title="Examples"
+              description="Horizontal and vertical bars with tone variants."
+              preview={barPreview}
+              code={barCode}
+            />
+          </section>
         </div>
       </div>
 
