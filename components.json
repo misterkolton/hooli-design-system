@@ -25,6 +25,10 @@
       "path": "src/components/ui/animated-checkmark.tsx"
     },
     {
+      "name": "capsule",
+      "path": "src/components/ui/capsule.tsx"
+    },
+    {
       "name": "bar",
       "path": "src/components/ui/bar.tsx"
     },

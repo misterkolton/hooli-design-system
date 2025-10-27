@@ -11,6 +11,7 @@ import { Avatar } from '@/components/ui/avatar'
 import { AnimatedCheckmark } from '@/components/ui/animated-checkmark'
 import { Badge } from '@/components/ui/badge'
 import { Bar } from '@/components/ui/bar'
+import { Capsule } from '@/components/ui/capsule'
 import { Bell } from 'lucide-react'
 import { Menu, X } from 'lucide-react'
 
@@ -187,6 +188,23 @@ const barPreview = (
 )
 
 const barCode = `import { Bar } from "@/components/ui/bar"\n\nexport function BarExamples() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <div className=\"flex items-center gap-3\">\n        <Bar width={64} height={8} tone=\"muted\" />\n        <Bar width={128} height={8} tone=\"primary\" />\n        <Bar width={192} height={8} tone=\"success\" />\n      </div>\n      <div className=\"flex items-end gap-3\" style={{ height: 80 }}>\n        <Bar width={8} height={24} tone=\"danger\" />\n        <Bar width={8} height={40} tone=\"warning\" />\n        <Bar width={8} height={64} tone=\"accent\" />\n      </div>\n    </div>\n  )\n}`
+
+const capsulePreview = (
+  <div className="flex flex-wrap items-center gap-4">
+    <Capsule>Success</Capsule>
+    <Capsule tone="primary">Primary</Capsule>
+    <Capsule tone="secondary">Secondary</Capsule>
+    <Capsule tone="accent">Accent</Capsule>
+    <Capsule tone="warning">Warning</Capsule>
+    <Capsule tone="danger" shadow>
+      Danger
+    </Capsule>
+    <Capsule size="xSmall">XS</Capsule>
+    <Capsule size="large">Large</Capsule>
+  </div>
+)
+
+const capsuleCode = `import { Capsule } from "@/components/ui/capsule"\n\nexport function CapsuleExamples() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-4\">\n      <Capsule>Success</Capsule>\n      <Capsule tone=\"primary\">Primary</Capsule>\n      <Capsule tone=\"secondary\">Secondary</Capsule>\n      <Capsule tone=\"accent\">Accent</Capsule>\n      <Capsule tone=\"warning\">Warning</Capsule>\n      <Capsule tone=\"danger\" shadow>Danger</Capsule>\n      <Capsule size=\"xSmall\">XS</Capsule>\n      <Capsule size=\"large\">Large</Capsule>\n    </div>\n  )\n}`
 
 type ThemeMode = 'light' | 'dark'
 const THEME_STORAGE_KEY = 'hooli-theme'
@@ -423,7 +441,7 @@ export default function App() {
           </section>
 
           {ALL_COMPONENT_ITEMS.filter((i) =>
-            i.slug !== 'button' && i.slug !== 'anchor' && i.slug !== 'animatedCheckMark' && i.slug !== 'avatar' && i.slug !== 'badge' && i.slug !== 'bar',
+            i.slug !== 'button' && i.slug !== 'anchor' && i.slug !== 'animatedCheckMark' && i.slug !== 'avatar' && i.slug !== 'badge' && i.slug !== 'bar' && i.slug !== 'capsule',
           ).map((item) => (
             <section className="space-y-6" id={item.slug} key={item.slug}>
               <div className="space-y-2">
@@ -454,6 +472,24 @@ export default function App() {
               description="Horizontal and vertical bars with tone variants."
               preview={barPreview}
               code={barCode}
+            />
+          </section>
+
+          <section className="space-y-10" id="capsule">
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Capsule</h2>
+              <p className="text-sm text-muted-foreground md:text-base">
+                Small, rounded labels used for statuses and tags. Compatible with legacy Capsule
+                props (backgroundColor/fontColor via tone mapping) and supports size and shadow
+                variants.
+              </p>
+            </div>
+
+            <ComponentExample
+              title="Examples"
+              description="Tone, size, and optional shadow."
+              preview={capsulePreview}
+              code={capsuleCode}
             />
           </section>
         </div>
