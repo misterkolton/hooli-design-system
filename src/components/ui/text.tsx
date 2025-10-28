@@ -17,13 +17,13 @@ export interface TextProps extends React.HTMLAttributes<HTMLElement> {
   nowrap?: boolean
 }
 
-const SIZE_CLASSES: Record<TextSize, string> = {
-  sm: 'text-[var(--size-sm)] leading-[var(--leading-loose)]',
-  base: 'text-[var(--size-md)] leading-[var(--leading-loose)]',
-  md: 'text-[var(--size-md)] leading-[var(--leading-loose)]', // alias of base
-  lg: 'text-[var(--size-lg)] leading-[var(--leading-loose)]',
-  caption: 'text-[var(--size-sm)] leading-[1.5] tracking-[var(--tracking-normal)]',
-  footnote: 'text-[var(--size-xs)] leading-[1.45] tracking-[0.002em]'
+const SIZE_CLASSES: Record<TextSize, { lh: string; varName: string; tracking?: string }> = {
+  sm: { lh: 'leading-[var(--leading-loose)]', varName: '--size-sm' },
+  base: { lh: 'leading-[var(--leading-loose)]', varName: '--size-md' },
+  md: { lh: 'leading-[var(--leading-loose)]', varName: '--size-md' },
+  lg: { lh: 'leading-[var(--leading-loose)]', varName: '--size-lg' },
+  caption: { lh: 'leading-[1.5]', varName: '--size-sm', tracking: 'tracking-[var(--tracking-normal)]' },
+  footnote: { lh: 'leading-[1.45]', varName: '--size-xs', tracking: 'tracking-[0.002em]' },
 }
 
 const WEIGHT_CLASSES: Record<Weight, string> = {
@@ -59,11 +59,14 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
       overflow: 'hidden'
     } : undefined
 
+    const sizing = SIZE_CLASSES[size]
+    const fontSizeStyle: React.CSSProperties = { fontSize: `var(${sizing.varName})` as any }
     return (
       <Comp
         ref={ref}
         className={cn(
-          SIZE_CLASSES[size],
+          sizing.lh,
+          sizing.tracking,
           WEIGHT_CLASSES[weight],
           TONE_CLASSES[tone],
           ALIGN_CLASSES[align],
@@ -71,7 +74,7 @@ export const Text = React.forwardRef<HTMLElement, TextProps>(
           'tracking-[var(--body-tracking)]',
           className,
         )}
-        style={{ ...style, ...(clampStyle as any) }}
+        style={{ ...fontSizeStyle, ...style, ...(clampStyle as any) }}
         {...rest}
       />
     )

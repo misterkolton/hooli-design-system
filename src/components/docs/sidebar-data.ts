@@ -35,6 +35,8 @@ export const ATOMS: SidebarItem[] = [
   { label: 'Typography', slug: 'typography' },
   { label: 'Prose', slug: 'prose' },
   { label: 'Typography Migration', slug: 'typographyMigration' },
+  { label: 'Type Scale', slug: 'typeScale' },
+  { label: "Typography Do's & Don'ts", slug: 'typographyDosDonts' },
   { label: 'V Stack', slug: 'vStack' },
 ]
 

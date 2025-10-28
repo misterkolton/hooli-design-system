@@ -345,7 +345,24 @@ export default function App() {
   const sortedItems = React.useMemo(() => [...ALL_COMPONENT_ITEMS].sort((a, b) => a.label.localeCompare(b.label)), [])
   const orderMap = React.useMemo(() => Object.fromEntries(sortedItems.map((i, idx) => [i.slug, idx])), [sortedItems])
   const customSlugs = React.useMemo(
-    () => new Set(['anchor', 'animatedCheckMark', 'avatar', 'badge', 'bar', 'button', 'capsule', 'card', 'colors', 'iconography', 'loadingSpinner', 'typography', 'prose', 'typographyMigration']),
+    () => new Set([
+      'anchor',
+      'animatedCheckMark',
+      'avatar',
+      'badge',
+      'bar',
+      'button',
+      'capsule',
+      'card',
+      'colors',
+      'iconography',
+      'loadingSpinner',
+      'typography',
+      'prose',
+      'typographyMigration',
+      'typeScale',
+      'typographyDosDonts',
+    ]),
     [],
   )
 
@@ -405,6 +422,40 @@ export default function App() {
             />
           </section>
 
+          {/* Typography Do's & Don'ts */}
+          <section className="space-y-10" id="typographyDosDonts" style={{ order: orderMap['typographyDosDonts'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Typography Do's & Don'ts</h2>
+              <p className="text-sm text-muted-foreground md:text-base">Quick, opinionated guidance to keep type consistent and readable.</p>
+            </div>
+            <ComponentExample
+              title="Examples"
+              preview={(
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="rounded-lg border border-emerald-300/60 bg-emerald-50/40 p-4 dark:border-emerald-500/40 dark:bg-emerald-500/10">
+                    <h4 className="mb-2 font-semibold text-emerald-700 dark:text-emerald-300">Do</h4>
+                    <ul className="list-disc pl-5 text-sm text-emerald-900 dark:text-emerald-200">
+                      <li><span className="font-medium">Use balanced H1–H2</span> for long titles.</li>
+                      <li>Clamp body in tight cards (<code>clamp=2</code>).</li>
+                      <li>Keep line length ~60–75ch for paragraphs.</li>
+                      <li>Use semantic tones; keep contrast high.</li>
+                    </ul>
+                  </div>
+                  <div className="rounded-lg border border-red-300/60 bg-red-50/40 p-4 dark:border-red-500/40 dark:bg-red-500/10">
+                    <h4 className="mb-2 font-semibold text-red-700 dark:text-red-300">Don't</h4>
+                    <ul className="list-disc pl-5 text-sm text-red-900 dark:text-red-200">
+                      <li>Clamp headings H1–H3.</li>
+                      <li>Use color alone for emphasis.</li>
+                      <li>Skip heading levels (e.g., H1 → H3).</li>
+                      <li>Overuse all caps or tight tracking.</li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+              code={`// Do: balance H1–H2, clamp body, maintain contrast\n// Don't: clamp headings, rely on color alone, skip levels`}
+            />
+          </section>
+
           {/* Prose */}
           <section className="space-y-10" id="prose" style={{ order: orderMap['prose'] }}>
             <div className="space-y-2">
@@ -412,26 +463,36 @@ export default function App() {
               <p className="text-sm text-muted-foreground md:text-base">Editorial wrapper for articles and docs. Provides rhythm, list spacing, and sensible defaults.</p>
             </div>
             <ComponentExample
-              title="Examples"
+              title="Full Example"
+              description="Headings, paragraphs, lists, blockquote, code, and links."
               preview={(
                 <div className="space-y-6">
-                  <Prose className="rounded-lg border border-border/60 bg-background/60 p-4">
+                  <Prose className="rounded-lg border border-border/60 bg-background/60 p-6">
                     <h1>Prose defaults</h1>
-                    <p>Use Prose for rich text like documentation. It sets a comfortable measure and spaced headings, lists, and code.</p>
+                    <p>
+                      Use <a href="#">Prose</a> for rich text like documentation. It sets a comfortable measure and spaced
+                      headings, lists, and code. Inline <code>code</code> and <strong>strong</strong> text are styled.
+                    </p>
+                    <h2>Blockquote</h2>
+                    <blockquote>
+                      Typography rules should be consistent, predictable, and easy to scan.
+                    </blockquote>
                     <h3>Lists</h3>
                     <ul>
                       <li>Consistent spacing</li>
                       <li>Readable measure (~70ch)</li>
-                      <li>Themed links and code</li>
+                      <li>Themed links and <code>code</code></li>
                     </ul>
+                    <h3>Code block</h3>
+                    <pre><code>{`function greet(name){\n  return \`Hello, ${'${name}'}!\`\n}`}</code></pre>
                   </Prose>
-                  <Prose invert className="rounded-lg border border-border/60 bg-foreground/5 p-4">
+                  <Prose invert className="rounded-lg border border-border/60 bg-foreground/5 p-6">
                     <h3>Inverted</h3>
                     <p>Use <code>invert</code> for dark cards on light backgrounds or vice versa.</p>
                   </Prose>
                 </div>
               )}
-              code={`import { Prose } from "@/components/ui/prose"\n\n<Prose>\n  <h1>Prose defaults</h1>\n  <p>…</p>\n</Prose>`}
+              code={`import { Prose } from "@/components/ui/prose"\n\n<Prose>\n  <h1>Prose defaults</h1>\n  <p>Use <a href="#">Prose</a>…</p>\n  <blockquote>…</blockquote>\n  <ul><li>…</li></ul>\n  <pre><code>…</code></pre>\n</Prose>`}
             />
           </section>
 
@@ -455,65 +516,23 @@ export default function App() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="border-t">
-                        <td className="px-3 py-2">Text</td>
-                        <td className="px-3 py-2">type="heroTitle"</td>
-                        <td className="px-3 py-2">&lt;Heading level=1 /&gt;</td>
-                        <td className="px-3 py-2">Use balance for long titles</td>
-                      </tr>
-                      <tr className="border-t">
-                        <td className="px-3 py-2">Text</td>
-                        <td className="px-3 py-2">type="title"</td>
-                        <td className="px-3 py-2">&lt;Heading level=2 /&gt;</td>
-                        <td className="px-3 py-2">Keep semantic order</td>
-                      </tr>
-                      <tr className="border-t">
-                        <td className="px-3 py-2">Text</td>
-                        <td className="px-3 py-2">type="subtitle"</td>
-                        <td className="px-3 py-2">&lt;Heading level=3 /&gt;</td>
-                        <td className="px-3 py-2">Use sparingly</td>
-                      </tr>
-                      <tr className="border-t">
-                        <td className="px-3 py-2">Text</td>
-                        <td className="px-3 py-2">type="largeBody"</td>
-                        <td className="px-3 py-2">&lt;Text size="lg" /&gt;</td>
-                        <td className="px-3 py-2"></td>
-                      </tr>
-                      <tr className="border-t">
-                        <td className="px-3 py-2">Text</td>
-                        <td className="px-3 py-2">type="body"</td>
-                        <td className="px-3 py-2">&lt;Text size="base" /&gt;</td>
-                        <td className="px-3 py-2">Default</td>
-                      </tr>
-                      <tr className="border-t">
-                        <td className="px-3 py-2">Text</td>
-                        <td className="px-3 py-2">type="caption"</td>
-                        <td className="px-3 py-2">&lt;Text size="caption" /&gt;</td>
-                        <td className="px-3 py-2"></td>
-                      </tr>
-                      <tr className="border-t">
-                        <td className="px-3 py-2">Text</td>
-                        <td className="px-3 py-2">type="footnote"</td>
-                        <td className="px-3 py-2">&lt;Text size="footnote" /&gt;</td>
-                        <td className="px-3 py-2"></td>
-                      </tr>
-                      <tr className="border-t">
-                        <td className="px-3 py-2">Text</td>
-                        <td className="px-3 py-2">whiteSpace / isStrikeThrough</td>
-                        <td className="px-3 py-2">Tailwind utilities</td>
-                        <td className="px-3 py-2">e.g. whitespace-nowrap, line-through</td>
-                      </tr>
-                      <tr className="border-t">
-                        <td className="px-3 py-2">Text</td>
-                        <td className="px-3 py-2">ellipsis hacks</td>
-                        <td className="px-3 py-2">&lt;Text clamp={1|2|3} /&gt;</td>
-                        <td className="px-3 py-2">Prefer clamp over title truncation</td>
-                      </tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="heroTitle"</td><td className="px-3 py-2">&lt;Heading level=1 /&gt;</td><td className="px-3 py-2">Use balance for long titles</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="title"</td><td className="px-3 py-2">&lt;Heading level=2 /&gt;</td><td className="px-3 py-2">Keep semantic order</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="subtitle"</td><td className="px-3 py-2">&lt;Heading level=3 /&gt;</td><td className="px-3 py-2">Use sparingly</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="largeBody"</td><td className="px-3 py-2">&lt;Text size="lg" /&gt;</td><td className="px-3 py-2"></td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="body"</td><td className="px-3 py-2">&lt;Text size="base" /&gt;</td><td className="px-3 py-2">Default</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="caption"</td><td className="px-3 py-2">&lt;Text size="caption" /&gt;</td><td className="px-3 py-2"></td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="footnote"</td><td className="px-3 py-2">&lt;Text size="footnote" /&gt;</td><td className="px-3 py-2"></td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">color props</td><td className="px-3 py-2">tone="muted|danger|…"</td><td className="px-3 py-2">Use semantic tokens</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">whiteSpace / isStrikeThrough</td><td className="px-3 py-2">Tailwind utilities</td><td className="px-3 py-2">whitespace-nowrap, line-through</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">alignment</td><td className="px-3 py-2">align="start|center|end"</td><td className="px-3 py-2">RTL-friendly</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">ellipsis hacks</td><td className="px-3 py-2">clamp=1|2|3</td><td className="px-3 py-2">Prefer clamp</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">inset/outset</td><td className="px-3 py-2">margin utilities</td><td className="px-3 py-2">m/mt/mb/py etc.</td></tr>
                     </tbody>
                   </table>
                 </div>
               )}
-              code={`// Example mapping\n// heroTitle -> <Heading level={1} />\n// largeBody -> <Text size=\"lg\" />\n// body -> <Text size=\"base\" />`}
+              code={`// heroTitle -> <Heading level={1} />\n// title -> <Heading level={2} />\n// body -> <Text size=\"base\" />\n// caption -> <Text size=\"caption\" />\n// whitespace-nowrap -> <Text nowrap /> or utility\n// ellipsis -> <Text clamp={1} />`}
             />
           </section>
 
@@ -613,6 +632,39 @@ export default function App() {
                 </Prose>
               )}
               code={`import { Prose } from "@/components/ui/prose"\n\n<Prose>\n  <h2>Typography in practice</h2>\n  <p>…</p>\n</Prose>`}
+            />
+          </section>
+
+          {/* Type Scale */}
+          <section className="space-y-10" id="typeScale" style={{ order: orderMap['typeScale'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Type Scale</h2>
+              <p className="text-sm text-muted-foreground md:text-base">All sizes at a glance — headings and text.</p>
+            </div>
+            <ComponentExample
+              title="Headings"
+              preview={(
+                <div className="space-y-3">
+                  <Heading level={1}>Heading 1 — level={1}</Heading>
+                  <Heading level={2}>Heading 2 — level={2}</Heading>
+                  <Heading level={3}>Heading 3 — level={3}</Heading>
+                  <Heading level={4}>Heading 4 — level={4}</Heading>
+                </div>
+              )}
+              code={`import { Heading } from "@/components/ui/heading"\n\n<Heading level={1}>Heading 1</Heading>\n<Heading level={2}>Heading 2</Heading>\n<Heading level={3}>Heading 3</Heading>\n<Heading level={4}>Heading 4</Heading>`}
+            />
+            <ComponentExample
+              title="Text"
+              preview={(
+                <div className="space-y-1.5">
+                  <Text size="lg">Text lg — size="lg"</Text>
+                  <Text size="base">Text base — size="base"</Text>
+                  <Text size="sm">Text sm — size="sm"</Text>
+                  <Text size="caption">Text caption — size="caption"</Text>
+                  <Text size="footnote">Text footnote — size="footnote"</Text>
+                </div>
+              )}
+              code={`import { Text } from "@/components/ui/text"\n\n<Text size=\"lg\">Text lg</Text>\n<Text size=\"base\">Text base</Text>\n<Text size=\"sm\">Text sm</Text>\n<Text size=\"caption\">Text caption</Text>\n<Text size=\"footnote\">Text footnote</Text>`}
             />
           </section>
 
