@@ -11,6 +11,8 @@ import { Avatar } from '@/components/ui/avatar'
 import { AnimatedCheckmark } from '@/components/ui/animated-checkmark'
 import { Badge } from '@/components/ui/badge'
 import { Bar } from '@/components/ui/bar'
+import { Capsule } from '@/components/ui/capsule'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Bell } from 'lucide-react'
 import { Menu, X } from 'lucide-react'
 
@@ -187,6 +189,69 @@ const barPreview = (
 )
 
 const barCode = `import { Bar } from "@/components/ui/bar"\n\nexport function BarExamples() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <div className=\"flex items-center gap-3\">\n        <Bar width={64} height={8} tone=\"muted\" />\n        <Bar width={128} height={8} tone=\"primary\" />\n        <Bar width={192} height={8} tone=\"success\" />\n      </div>\n      <div className=\"flex items-end gap-3\" style={{ height: 80 }}>\n        <Bar width={8} height={24} tone=\"danger\" />\n        <Bar width={8} height={40} tone=\"warning\" />\n        <Bar width={8} height={64} tone=\"accent\" />\n      </div>\n    </div>\n  )\n}`
+
+const capsulePreview = (
+  <div className="flex flex-wrap items-center gap-4">
+    <Capsule>Success</Capsule>
+    <Capsule tone="primary">Primary</Capsule>
+    <Capsule tone="secondary">Secondary</Capsule>
+    <Capsule tone="accent">Accent</Capsule>
+    <Capsule tone="warning">Warning</Capsule>
+    <Capsule tone="danger" shadow="sm">
+      Danger
+    </Capsule>
+    <Capsule size="xSmall">XS</Capsule>
+    <Capsule size="large">Large</Capsule>
+  </div>
+)
+
+const capsuleCode = `import { Capsule } from "@/components/ui/capsule"\n\nexport function CapsuleExamples() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-4\">\n      <Capsule>Success</Capsule>\n      <Capsule tone=\"primary\">Primary</Capsule>\n      <Capsule tone=\"secondary\">Secondary</Capsule>\n      <Capsule tone=\"accent\">Accent</Capsule>\n      <Capsule tone=\"warning\">Warning</Capsule>\n      <Capsule tone=\"danger\" shadow=\"sm\">Danger</Capsule>\n      <Capsule size=\"xSmall\">XS</Capsule>\n      <Capsule size=\"large\">Large</Capsule>\n    </div>\n  )\n}`
+
+const cardPreview = (
+  <div className="grid gap-6 md:grid-cols-2">
+    <Card>
+      <CardHeader>
+        <CardTitle>Basic Card</CardTitle>
+        <CardDescription>Header, content, and footer slots.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-muted-foreground">
+          Use CardHeader, CardContent, and CardFooter to organize content.
+        </p>
+      </CardContent>
+      <CardFooter>
+        <Badge>New</Badge>
+      </CardFooter>
+    </Card>
+
+    <Card elevated hoverable>
+      <CardHeader>
+        <CardTitle>Elevated + Hoverable</CardTitle>
+        <CardDescription>Shadow increases on hover.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="h-20 rounded-md bg-muted" />
+      </CardContent>
+      <CardFooter>
+        <Anchor href="#">Learn more</Anchor>
+      </CardFooter>
+    </Card>
+
+    <Card center className="h-32">
+      <div className="text-sm text-muted-foreground">Centered content</div>
+    </Card>
+
+    <Card className="overflow-hidden">
+      <div className="h-24 w-full bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20" />
+      <CardContent className="pt-4">
+        <CardTitle className="text-base">Media Card</CardTitle>
+        <CardDescription>Combine with images or charts.</CardDescription>
+      </CardContent>
+    </Card>
+  </div>
+)
+
+const cardCode = `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"\nimport { Anchor } from "@/components/ui/anchor"\nimport { Badge } from "@/components/ui/badge"\n\nexport function CardExamples() {\n  return (\n    <div className=\"grid gap-6 md:grid-cols-2\">\n      <Card>\n        <CardHeader>\n          <CardTitle>Basic Card</CardTitle>\n          <CardDescription>Header, content, and footer slots.</CardDescription>\n        </CardHeader>\n        <CardContent>\n          <p className=\"text-sm text-muted-foreground\">Use CardHeader, CardContent, and CardFooter to organize content.</p>\n        </CardContent>\n        <CardFooter>\n          <Badge>New</Badge>\n        </CardFooter>\n      </Card>\n\n      <Card elevated hoverable>\n        <CardHeader>\n          <CardTitle>Elevated + Hoverable</CardTitle>\n          <CardDescription>Shadow increases on hover.</CardDescription>\n        </CardHeader>\n        <CardContent>\n          <div className=\"h-20 rounded-md bg-muted\" />\n        </CardContent>\n        <CardFooter>\n          <Anchor href=\"#\">Learn more</Anchor>\n        </CardFooter>\n      </Card>\n\n      <Card center className=\"h-32\">\n        <div className=\"text-sm text-muted-foreground\">Centered content</div>\n      </Card>\n\n      <Card className=\"overflow-hidden\">\n        <div className=\"h-24 w-full bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20\" />\n        <CardContent className=\"pt-4\">\n          <CardTitle className=\"text-base\">Media Card</CardTitle>\n          <CardDescription>Combine with images or charts.</CardDescription>\n        </CardContent>\n      </Card>\n    </div>\n  )\n}`
 
 type ThemeMode = 'light' | 'dark'
 const THEME_STORAGE_KEY = 'hooli-theme'
@@ -423,7 +488,7 @@ export default function App() {
           </section>
 
           {ALL_COMPONENT_ITEMS.filter((i) =>
-            i.slug !== 'button' && i.slug !== 'anchor' && i.slug !== 'animatedCheckMark' && i.slug !== 'avatar' && i.slug !== 'badge' && i.slug !== 'bar',
+            i.slug !== 'button' && i.slug !== 'anchor' && i.slug !== 'animatedCheckMark' && i.slug !== 'avatar' && i.slug !== 'badge' && i.slug !== 'bar' && i.slug !== 'capsule' && i.slug !== 'card',
           ).map((item) => (
             <section className="space-y-6" id={item.slug} key={item.slug}>
               <div className="space-y-2">
@@ -454,6 +519,41 @@ export default function App() {
               description="Horizontal and vertical bars with tone variants."
               preview={barPreview}
               code={barCode}
+            />
+          </section>
+
+          <section className="space-y-10" id="capsule">
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Capsule</h2>
+              <p className="text-sm text-muted-foreground md:text-base">
+                Small, rounded labels used for statuses and tags. Compatible with legacy Capsule
+                props (backgroundColor/fontColor via tone mapping) and supports size and shadow
+                variants.
+              </p>
+            </div>
+
+            <ComponentExample
+              title="Examples"
+              description="Tone, size, and optional shadow."
+              preview={capsulePreview}
+              code={capsuleCode}
+            />
+          </section>
+
+          <section className="space-y-10" id="card">
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Card</h2>
+              <p className="text-sm text-muted-foreground md:text-base">
+                Flexible container with header/content/footer slots. Supports elevated, hoverable,
+                and centered variants for quick layouts.
+              </p>
+            </div>
+
+            <ComponentExample
+              title="Examples"
+              description="Basic, elevated/hoverable, centered, and media variants."
+              preview={cardPreview}
+              code={cardCode}
             />
           </section>
         </div>
