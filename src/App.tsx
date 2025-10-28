@@ -16,7 +16,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ColorsDocs } from '@/components/docs/colors'
 import { Bell } from 'lucide-react'
 import { ToastProvider } from '@/components/ui/toast'
-import { Menu, X } from 'lucide-react'
 
 const buttonVariantsPreview = (
   <div className="flex flex-wrap gap-3">
@@ -358,19 +357,6 @@ export default function App() {
             </div>
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-9 w-9 rounded-full"
-                  aria-label={sidebarOpen ? 'Close navigation' : 'Open navigation'}
-                  onClick={() => setSidebarOpen((o) => !o)}
-                >
-                  {sidebarOpen ? (
-                    <X className="h-4 w-4" aria-hidden="true" />
-                  ) : (
-                    <Menu className="h-4 w-4" aria-hidden="true" />
-                  )}
-                </Button>
                 <h1 className="text-3xl font-semibold text-foreground md:text-4xl">
                   Components
                 </h1>

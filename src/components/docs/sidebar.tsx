@@ -61,14 +61,19 @@ export const DocsSidebar: React.FC<DocsSidebarProps> = ({
       </div>
       {!collapsed && (
         <ScrollArea className={cn('px-2 pb-6', inDrawer ? 'h-[calc(100svh-3.25rem)]' : 'h-[calc(100svh-3.25rem)]')}>
-          <nav className="space-y-5">
+          <nav className="space-y-6">
             {SIDEBAR_SECTIONS.map((section) => (
-              <div key={section.title} className="space-y-2">
-                <div className="px-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground/80">
-                  {section.title}
+              <div key={section.title} className="relative">
+                {/* Sticky section header */}
+                <div className={cn(
+                  'sticky top-0 z-10 border-b border-border/60 bg-background px-0',
+                )}>
+                  <div className="px-2 py-2 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                    {section.title}
+                  </div>
                 </div>
-                <div className="mx-2 h-px bg-border/60" />
-                <div className="space-y-1">
+                {/* Section links */}
+                <div className="space-y-1 px-0 py-2">
                   {section.items.map((item) => (
                     <SidebarLink
                       key={item.slug}
