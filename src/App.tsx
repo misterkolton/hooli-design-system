@@ -13,7 +13,9 @@ import { Badge } from '@/components/ui/badge'
 import { Bar } from '@/components/ui/bar'
 import { Capsule } from '@/components/ui/capsule'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { ColorsDocs } from '@/components/docs/colors'
 import { Bell } from 'lucide-react'
+import { ToastProvider } from '@/components/ui/toast'
 import { Menu, X } from 'lucide-react'
 
 const buttonVariantsPreview = (
@@ -333,6 +335,7 @@ export default function App() {
   }, [sidebarOpen])
 
   return (
+    <ToastProvider>
     <main className="min-h-screen bg-background transition-colors">
       <div
         className={`mx-auto grid max-w-6xl grid-cols-1 gap-8 px-6 pb-24 pt-6 ${sidebarCollapsed ? 'lg:grid-cols-[64px_1fr]' : 'lg:grid-cols-[260px_1fr]'}`}
@@ -379,6 +382,26 @@ export default function App() {
               </p>
             </div>
           </header>
+
+          {/* Colors */}
+          <section className="space-y-10" id="colors">
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Colors</h2>
+              <p className="text-sm text-muted-foreground md:text-base">
+                Theme tokens are exposed as CSS variables and Tailwind color keys. They adapt to
+                light/dark mode and power semantic variants. Utility scales cover success, warning,
+                danger, and grays for components.
+              </p>
+            </div>
+
+            {/* Preview only; code sample focuses on usage */}
+            <ComponentExample
+              title="Palette"
+              description="Semantic tokens and functional scales used across the system."
+              preview={<ColorsDocs />}
+              code={`// Use semantic tokens for surfaces and text\n<div className=\"bg-card text-card-foreground\">Card</div>\n<button className=\"bg-primary text-primary-foreground hover:bg-primary/90\">Primary</button>\n\n// Utility palettes for states\n<button className=\"bg-emerald-600 text-emerald-50\">Success</button>\n<button className=\"bg-amber-500 text-amber-950\">Warning</button>\n<button className=\"bg-red-600 text-red-50\">Danger</button>`}
+            />
+          </section>
 
           <section className="space-y-10" id="button">
             <div className="space-y-2">
@@ -488,7 +511,7 @@ export default function App() {
           </section>
 
           {ALL_COMPONENT_ITEMS.filter((i) =>
-            i.slug !== 'button' && i.slug !== 'anchor' && i.slug !== 'animatedCheckMark' && i.slug !== 'avatar' && i.slug !== 'badge' && i.slug !== 'bar' && i.slug !== 'capsule' && i.slug !== 'card',
+            i.slug !== 'button' && i.slug !== 'anchor' && i.slug !== 'animatedCheckMark' && i.slug !== 'avatar' && i.slug !== 'badge' && i.slug !== 'bar' && i.slug !== 'capsule' && i.slug !== 'card' && i.slug !== 'colors',
           ).map((item) => (
             <section className="space-y-6" id={item.slug} key={item.slug}>
               <div className="space-y-2">
@@ -587,5 +610,6 @@ export default function App() {
         </div>
       ) : null}
     </main>
+    </ToastProvider>
   )
 }
