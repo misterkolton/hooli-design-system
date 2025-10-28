@@ -19,6 +19,7 @@ export const ATOMS: SidebarItem[] = [
   { label: 'Bar', slug: 'bar' },
   { label: 'Capsule', slug: 'capsule' },
   { label: 'Card', slug: 'card' },
+  { label: 'Colors', slug: 'colors', isNew: true },
   { label: 'Color Thumbnail', slug: 'colorThumbnail' },
   { label: 'Div', slug: 'div' },
   { label: 'Flex', slug: 'flex' },
