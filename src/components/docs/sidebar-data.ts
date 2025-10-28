@@ -33,6 +33,8 @@ export const ATOMS: SidebarItem[] = [
   { label: 'Spacer', slug: 'spacer' },
   { label: 'Span', slug: 'span' },
   { label: 'Typography', slug: 'typography' },
+  { label: 'Prose', slug: 'prose' },
+  { label: 'Typography Migration', slug: 'typographyMigration' },
   { label: 'V Stack', slug: 'vStack' },
 ]
 
