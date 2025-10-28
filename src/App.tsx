@@ -14,7 +14,9 @@ import { Bar } from '@/components/ui/bar'
 import { Capsule } from '@/components/ui/capsule'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { ColorsDocs } from '@/components/docs/colors'
-import { Bell } from 'lucide-react'
+import { IconsCatalog } from '@/components/docs/icons'
+import { Icon } from '@/components/ui/icon'
+// Icon usage demos moved to our Icon component
 import { ToastProvider } from '@/components/ui/toast'
 
 const buttonVariantsPreview = (
@@ -168,11 +170,11 @@ const badgePreview = (
     <Badge tone="success">Live</Badge>
     <Badge tone="warning">Warn</Badge>
     <Badge tone="danger">Fail</Badge>
-    <Badge icon={<Bell className="h-3 w-3" aria-hidden />}>Alert</Badge>
+    <Badge icon={<Icon name="bell" size="xSmall" decorative />}>Alert</Badge>
   </div>
 )
 
-const badgeCode = `import { Badge } from \"@/components/ui/badge\"\nimport { Bell } from \"lucide-react\"\n\nexport function BadgeExamples() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-4\">\n      <Badge item={1} />\n      <Badge item={9} />\n      <Badge item={12} />\n      <Badge>New</Badge>\n      <Badge tone=\"secondary\">Beta</Badge>\n      <Badge tone=\"success\">Live</Badge>\n      <Badge tone=\"warning\">Warn</Badge>\n      <Badge tone=\"danger\">Fail</Badge>\n      <Badge icon={<Bell className=\"h-3 w-3\" aria-hidden />} >Alert</Badge>\n    </div>\n  )\n}`
+const badgeCode = `import { Badge } from \"@/components/ui/badge\"\nimport { Icon } from \"@/components/ui/icon\"\n\nexport function BadgeExamples() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-4\">\n      <Badge item={1} />\n      <Badge item={9} />\n      <Badge item={12} />\n      <Badge>New</Badge>\n      <Badge tone=\"secondary\">Beta</Badge>\n      <Badge tone=\"success\">Live</Badge>\n      <Badge tone=\"warning\">Warn</Badge>\n      <Badge tone=\"danger\">Fail</Badge>\n      <Badge icon={<Icon name=\"bell\" size=\"xSmall\" decorative />} >Alert</Badge>\n    </div>\n  )\n}`
 
 const barPreview = (
   <div className="flex flex-col gap-4">
@@ -333,6 +335,14 @@ export default function App() {
     }
   }, [sidebarOpen])
 
+  // Alphabetical ordering for sections (page order)
+  const sortedItems = React.useMemo(() => [...ALL_COMPONENT_ITEMS].sort((a, b) => a.label.localeCompare(b.label)), [])
+  const orderMap = React.useMemo(() => Object.fromEntries(sortedItems.map((i, idx) => [i.slug, idx])), [sortedItems])
+  const customSlugs = React.useMemo(
+    () => new Set(['anchor', 'animatedCheckMark', 'avatar', 'badge', 'bar', 'button', 'capsule', 'card', 'colors', 'iconography']),
+    [],
+  )
+
   return (
     <ToastProvider>
     <main className="min-h-screen bg-background transition-colors">
@@ -370,7 +380,7 @@ export default function App() {
           </header>
 
           {/* Colors */}
-          <section className="space-y-10" id="colors">
+          <section className="space-y-10" id="colors" style={{ order: orderMap['colors'] }}>
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-foreground">Colors</h2>
               <p className="text-sm text-muted-foreground md:text-base">
@@ -389,7 +399,7 @@ export default function App() {
             />
           </section>
 
-          <section className="space-y-10" id="button">
+          <section className="space-y-10" id="button" style={{ order: orderMap['button'] }}>
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-foreground">Button</h2>
               <p className="text-sm text-muted-foreground md:text-base">
@@ -420,7 +430,7 @@ export default function App() {
             />
           </section>
 
-          <section className="space-y-10" id="anchor">
+          <section className="space-y-10" id="anchor" style={{ order: orderMap['anchor'] }}>
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-foreground">Anchor</h2>
               <p className="text-sm text-muted-foreground md:text-base">
@@ -437,7 +447,7 @@ export default function App() {
             />
           </section>
 
-          <section className="space-y-10" id="avatar">
+          <section className="space-y-10" id="avatar" style={{ order: orderMap['avatar'] }}>
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-foreground">Avatar</h2>
               <p className="text-sm text-muted-foreground md:text-base">
@@ -462,7 +472,7 @@ export default function App() {
             />
           </section>
 
-          <section className="space-y-10" id="animatedCheckMark">
+          <section className="space-y-10" id="animatedCheckMark" style={{ order: orderMap['animatedCheckMark'] }}>
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-foreground">Animated Checkmark</h2>
               <p className="text-sm text-muted-foreground md:text-base">
@@ -479,7 +489,7 @@ export default function App() {
             />
           </section>
 
-          <section className="space-y-10" id="badge">
+          <section className="space-y-10" id="badge" style={{ order: orderMap['badge'] }}>
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-foreground">Badge</h2>
               <p className="text-sm text-muted-foreground md:text-base">
@@ -496,10 +506,8 @@ export default function App() {
             />
           </section>
 
-          {ALL_COMPONENT_ITEMS.filter((i) =>
-            i.slug !== 'button' && i.slug !== 'anchor' && i.slug !== 'animatedCheckMark' && i.slug !== 'avatar' && i.slug !== 'badge' && i.slug !== 'bar' && i.slug !== 'capsule' && i.slug !== 'card' && i.slug !== 'colors',
-          ).map((item) => (
-            <section className="space-y-6" id={item.slug} key={item.slug}>
+          {sortedItems.filter((i) => !customSlugs.has(i.slug)).map((item) => (
+            <section className="space-y-6" id={item.slug} key={item.slug} style={{ order: orderMap[item.slug] }}>
               <div className="space-y-2">
                 <h2 className="text-2xl font-semibold text-foreground">{item.label}</h2>
                 <p className="text-sm text-muted-foreground md:text-base">
@@ -514,7 +522,7 @@ export default function App() {
             </section>
           ))}
           
-          <section className="space-y-10" id="bar">
+          <section className="space-y-10" id="bar" style={{ order: orderMap['bar'] }}>
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-foreground">Bar</h2>
               <p className="text-sm text-muted-foreground md:text-base">
@@ -531,7 +539,24 @@ export default function App() {
             />
           </section>
 
-          <section className="space-y-10" id="capsule">
+          <section className="space-y-10" id="iconography" style={{ order: orderMap['iconography'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Iconography</h2>
+              <p className="text-sm text-muted-foreground md:text-base">
+                A modern Lucide-based Icon component with legacy QDS name and props mapping. Supports
+                tones, sizes (tokens or px), orientation, and stroke width.
+              </p>
+            </div>
+
+            <ComponentExample
+              title="Examples"
+              description="Searchable icon registry with legacy mapping and usage."
+              preview={<IconsCatalog />}
+              code={`import { Icon } from "@/components/ui/icon"\n\nexport function IconExamples() {\n  return (\n    <>\n      {/* Size tokens or pixels */}\n      <Icon name="close" size="small" />\n      <Icon name="close" size={20} />\n\n      {/* Tone or legacy primaryColor mapping */}\n      <Icon name="check" tone="success" />\n      <Icon name="closeCircle" primaryColor="danger" />\n\n      {/* Orientation for directional glyphs */}\n      <Icon name="chevron" orientation="left" />\n\n      {/* Loading uses a spin animation */}\n      <Icon name="loading" />\n    </>\n  )\n}`}
+            />
+          </section>
+
+          <section className="space-y-10" id="capsule" style={{ order: orderMap['capsule'] }}>
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-foreground">Capsule</h2>
               <p className="text-sm text-muted-foreground md:text-base">
@@ -549,7 +574,7 @@ export default function App() {
             />
           </section>
 
-          <section className="space-y-10" id="card">
+          <section className="space-y-10" id="card" style={{ order: orderMap['card'] }}>
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-foreground">Card</h2>
               <p className="text-sm text-muted-foreground md:text-base">
