@@ -16,6 +16,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ColorsDocs } from '@/components/docs/colors'
 import { IconsCatalog } from '@/components/docs/icons'
 import { Icon } from '@/components/ui/icon'
+import { LoadingSpinner } from '@/components/ui/loading-spinner'
 // Icon usage demos moved to our Icon component
 import { ToastProvider } from '@/components/ui/toast'
 
@@ -339,7 +340,7 @@ export default function App() {
   const sortedItems = React.useMemo(() => [...ALL_COMPONENT_ITEMS].sort((a, b) => a.label.localeCompare(b.label)), [])
   const orderMap = React.useMemo(() => Object.fromEntries(sortedItems.map((i, idx) => [i.slug, idx])), [sortedItems])
   const customSlugs = React.useMemo(
-    () => new Set(['anchor', 'animatedCheckMark', 'avatar', 'badge', 'bar', 'button', 'capsule', 'card', 'colors', 'iconography']),
+    () => new Set(['anchor', 'animatedCheckMark', 'avatar', 'badge', 'bar', 'button', 'capsule', 'card', 'colors', 'iconography', 'loadingSpinner']),
     [],
   )
 
@@ -396,6 +397,55 @@ export default function App() {
               description="Semantic tokens and functional scales used across the system."
               preview={<ColorsDocs />}
               code={`// Use semantic tokens for surfaces and text\n<div className=\"bg-card text-card-foreground\">Card</div>\n<button className=\"bg-primary text-primary-foreground hover:bg-primary/90\">Primary</button>\n\n// Utility palettes for states\n<button className=\"bg-emerald-600 text-emerald-50\">Success</button>\n<button className=\"bg-amber-500 text-amber-950\">Warning</button>\n<button className=\"bg-red-600 text-red-50\">Danger</button>`}
+            />
+          </section>
+
+          {/* Loading Spinner */}
+          <section className="space-y-10" id="loadingSpinner" style={{ order: orderMap['loadingSpinner'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Loading Spinner</h2>
+              <p className="text-sm text-muted-foreground md:text-base">A minimal SVG spinner inspired by the 180° ring with background. Supports size, tone, and speed presets.</p>
+            </div>
+
+            <ComponentExample
+              title="Sizes"
+              preview={(
+                <div className="flex flex-wrap items-center gap-6">
+                  <LoadingSpinner size="xSmall" />
+                  <LoadingSpinner size="small" />
+                  <LoadingSpinner size="medium" />
+                  <LoadingSpinner size="large" />
+                  <LoadingSpinner size="xLarge" />
+                </div>
+              )}
+              code={`import { LoadingSpinner } from "@/components/ui/loading-spinner"\n\nexport function SpinnerSizes(){\n  return (\n    <div className=\"flex items-center gap-6\">\n      <LoadingSpinner size=\"xSmall\" />\n      <LoadingSpinner size=\"small\" />\n      <LoadingSpinner size=\"medium\" />\n      <LoadingSpinner size=\"large\" />\n      <LoadingSpinner size=\"xLarge\" />\n    </div>\n  )\n}`}
+            />
+
+            <ComponentExample
+              title="Tones"
+              preview={(
+                <div className="flex flex-wrap items-center gap-6">
+                  <LoadingSpinner tone="primary" />
+                  <LoadingSpinner tone="secondary" />
+                  <LoadingSpinner tone="accent" />
+                  <LoadingSpinner tone="success" />
+                  <LoadingSpinner tone="warning" />
+                  <LoadingSpinner tone="danger" />
+                </div>
+              )}
+              code={`export function SpinnerTones(){\n  return (\n    <div className=\"flex items-center gap-6\">\n      <LoadingSpinner tone=\"primary\" />\n      <LoadingSpinner tone=\"secondary\" />\n      <LoadingSpinner tone=\"accent\" />\n      <LoadingSpinner tone=\"success\" />\n      <LoadingSpinner tone=\"warning\" />\n      <LoadingSpinner tone=\"danger\" />\n    </div>\n  )\n}`}
+            />
+
+            <ComponentExample
+              title="Speed"
+              preview={(
+                <div className="flex flex-wrap items-center gap-6">
+                  <LoadingSpinner speed="slow" />
+                  <LoadingSpinner speed="normal" />
+                  <LoadingSpinner speed="fast" />
+                </div>
+              )}
+              code={`export function SpinnerSpeed(){\n  return (\n    <div className=\"flex items-center gap-6\">\n      <LoadingSpinner speed=\"slow\" />\n      <LoadingSpinner speed=\"normal\" />\n      <LoadingSpinner speed=\"fast\" />\n    </div>\n  )\n}`}
             />
           </section>
 
