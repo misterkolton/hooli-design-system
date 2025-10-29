@@ -27,6 +27,7 @@ export const ATOMS: SidebarItem[] = [
   { label: 'Iconography', slug: 'iconography' },
   { label: 'List', slug: 'list' },
   { label: 'List Item', slug: 'listItem' },
+  { label: 'Items', slug: 'items', isNew: true },
   { label: 'Loading Spinner', slug: 'loadingSpinner' },
   { label: 'Portal', slug: 'portal' },
   { label: 'Section', slug: 'section' },

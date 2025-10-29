@@ -20,6 +20,7 @@ import { LoadingSpinner } from '@/components/ui/loading-spinner'
 import { Heading } from '@/components/ui/heading'
 import { Text } from '@/components/ui/text'
 import { Prose } from '@/components/ui/prose'
+import { Items, Item, ItemGroup } from '@/components/ui/items'
 // Icon usage demos moved to our Icon component
 import { ToastProvider } from '@/components/ui/toast'
 
@@ -362,6 +363,7 @@ export default function App() {
       'typographyMigration',
       'typeScale',
       'typographyDosDonts',
+      'items',
     ]),
     [],
   )
@@ -419,6 +421,70 @@ export default function App() {
               description="Semantic tokens and functional scales used across the system."
               preview={<ColorsDocs />}
               code={`// Use semantic tokens for surfaces and text\n<div className=\"bg-card text-card-foreground\">Card</div>\n<button className=\"bg-primary text-primary-foreground hover:bg-primary/90\">Primary</button>\n\n// Utility palettes for states\n<button className=\"bg-emerald-600 text-emerald-50\">Success</button>\n<button className=\"bg-amber-500 text-amber-950\">Warning</button>\n<button className=\"bg-red-600 text-red-50\">Danger</button>`}
+            />
+          </section>
+
+          {/* Items (List replacement) */}
+          <section className="space-y-10" id="items" style={{ order: orderMap['items'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Items</h2>
+              <p className="text-sm text-muted-foreground md:text-base">Interactive list primitives with search, selection, and grouping. Use for command pallets, pickers, and action menus. Prefer Prose ul/ol for static content.</p>
+            </div>
+
+            <ComponentExample
+              title="Searchable List"
+              preview={(
+                <Items className="max-w-md" placeholder="Search settings…">
+                  <Item value="Profile" leadingIcon={<Icon name="user" size="xSmall" decorative />} />
+                  <Item value="Notifications" leadingIcon={<Icon name="bell" size="xSmall" decorative />} />
+                  <Item value="Security" leadingIcon={<Icon name="lock" size="xSmall" decorative />} />
+                  <Item value="Billing" leadingIcon={<Icon name="creditCard" size="xSmall" decorative />} />
+                </Items>
+              )}
+              code={`import { Items, Item } from "@/components/ui/items"\n\n<Items placeholder=\"Search settings…\">\n  <Item value=\"Profile\" />\n  <Item value=\"Notifications\" />\n  <Item value=\"Security\" />\n  <Item value=\"Billing\" />\n</Items>`}
+            />
+
+            <ComponentExample
+              title="Grouped"
+              preview={(
+                <Items className="max-w-md">
+                  <ItemGroup label="General">
+                    <Item value="Home" leadingIcon={<Icon name="home" size="xSmall" decorative />} />
+                    <Item value="Search" leadingIcon={<Icon name="search" size="xSmall" decorative />} />
+                    <Item value="Downloads" leadingIcon={<Icon name="download" size="xSmall" decorative />} />
+                  </ItemGroup>
+                  <ItemGroup label="Danger Zone">
+                    <Item value="Delete account" tone="danger" leadingIcon={<Icon name="trash" size="xSmall" decorative />} />
+                  </ItemGroup>
+                </Items>
+              )}
+              code={`import { Items, Item, ItemGroup } from "@/components/ui/items"\n\n<Items>\n  <ItemGroup label=\"General\">\n    <Item value=\"Home\" />\n    <Item value=\"Search\" />\n    <Item value=\"Downloads\" />\n  </ItemGroup>\n  <ItemGroup label=\"Danger Zone\">\n    <Item value=\"Delete account\" tone=\"danger\" />\n  </ItemGroup>\n</Items>`}
+            />
+
+            <ComponentExample
+              title="When to use / not use"
+              description="Use Items for interactive, keyboardable lists (commands, actions). Use Prose lists for static content; use DropdownMenu/Select/ContextMenu for anchored menus."
+              preview={(
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="rounded-lg border border-emerald-300/60 bg-emerald-50/40 p-4 dark:border-emerald-500/40 dark:bg-emerald-500/10">
+                    <h4 className="mb-2 font-semibold text-emerald-700 dark:text-emerald-300">Use Items for:</h4>
+                    <ul className="list-disc pl-5 text-sm text-emerald-900 dark:text-emerald-200">
+                      <li>Command palettes and pickers</li>
+                      <li>Searchable action menus</li>
+                      <li>Selectable lists with icons</li>
+                    </ul>
+                  </div>
+                  <div className="rounded-lg border border-amber-300/60 bg-amber-50/40 p-4 dark:border-amber-500/40 dark:bg-amber-500/10">
+                    <h4 className="mb-2 font-semibold text-amber-700 dark:text-amber-300">Don’t use for:</h4>
+                    <ul className="list-disc pl-5 text-sm text-amber-900 dark:text-amber-200">
+                      <li>Static documentation (use Prose ul/ol)</li>
+                      <li>Context menus (use Dropdown/ContextMenu)</li>
+                      <li>Tabular data (use Table)</li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+              code={`// Use Items for interactive lists; prefer native lists for static content.`}
             />
           </section>
 
