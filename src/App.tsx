@@ -607,6 +607,7 @@ export default function App() {
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-foreground">Loading Spinner</h2>
               <p className="text-sm text-muted-foreground md:text-base">Minimal 180° ring spinner with a faint track. Supports size, tone, and speed presets.</p>
+              <p className="text-sm text-muted-foreground md:text-base">A minimal SVG spinner inspired by the 180° ring with background. Supports size, tone, and speed presets.</p>
             </div>
 
             <ComponentExample
