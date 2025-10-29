@@ -27,12 +27,17 @@ export const ATOMS: SidebarItem[] = [
   { label: 'Iconography', slug: 'iconography' },
   { label: 'List', slug: 'list' },
   { label: 'List Item', slug: 'listItem' },
+  { label: 'Items', slug: 'items', isNew: true },
   { label: 'Loading Spinner', slug: 'loadingSpinner' },
   { label: 'Portal', slug: 'portal' },
   { label: 'Section', slug: 'section' },
   { label: 'Spacer', slug: 'spacer' },
   { label: 'Span', slug: 'span' },
   { label: 'Typography', slug: 'typography' },
+  { label: 'Prose', slug: 'prose' },
+  { label: 'Typography Migration', slug: 'typographyMigration' },
+  { label: 'Type Scale', slug: 'typeScale' },
+  { label: "Typography Do's & Don'ts", slug: 'typographyDosDonts' },
   { label: 'V Stack', slug: 'vStack' },
 ]
 

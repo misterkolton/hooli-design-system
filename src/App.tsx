@@ -17,6 +17,10 @@ import { ColorsDocs } from '@/components/docs/colors'
 import { IconsCatalog } from '@/components/docs/icons'
 import { Icon } from '@/components/ui/icon'
 import { LoadingSpinner } from '@/components/ui/loading-spinner'
+import { Heading } from '@/components/ui/heading'
+import { Text } from '@/components/ui/text'
+import { Prose } from '@/components/ui/prose'
+import { Items, Item, ItemGroup } from '@/components/ui/items'
 // Icon usage demos moved to our Icon component
 import { ToastProvider } from '@/components/ui/toast'
 
@@ -265,6 +269,8 @@ export default function App() {
   const [activeSlug, setActiveSlug] = React.useState<string | undefined>('button')
   const [sidebarOpen, setSidebarOpen] = React.useState(false)
   const [sidebarCollapsed, setSidebarCollapsed] = React.useState(false)
+  const [typoBalance, setTypoBalance] = React.useState(true)
+  const [typoClamp, setTypoClamp] = React.useState<0|1|2|3|4|5>(0)
 
   React.useEffect(() => {
     if (typeof window === 'undefined') {
@@ -340,7 +346,25 @@ export default function App() {
   const sortedItems = React.useMemo(() => [...ALL_COMPONENT_ITEMS].sort((a, b) => a.label.localeCompare(b.label)), [])
   const orderMap = React.useMemo(() => Object.fromEntries(sortedItems.map((i, idx) => [i.slug, idx])), [sortedItems])
   const customSlugs = React.useMemo(
-    () => new Set(['anchor', 'animatedCheckMark', 'avatar', 'badge', 'bar', 'button', 'capsule', 'card', 'colors', 'iconography', 'loadingSpinner']),
+    () => new Set([
+      'anchor',
+      'animatedCheckMark',
+      'avatar',
+      'badge',
+      'bar',
+      'button',
+      'capsule',
+      'card',
+      'colors',
+      'iconography',
+      'loadingSpinner',
+      'typography',
+      'prose',
+      'typographyMigration',
+      'typeScale',
+      'typographyDosDonts',
+      'items',
+    ]),
     [],
   )
 
@@ -400,10 +424,189 @@ export default function App() {
             />
           </section>
 
+          {/* Items (List replacement) */}
+          <section className="space-y-10" id="items" style={{ order: orderMap['items'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Items</h2>
+              <p className="text-sm text-muted-foreground md:text-base">Interactive list primitives with search, selection, and grouping. Use for command pallets, pickers, and action menus. Prefer Prose ul/ol for static content.</p>
+            </div>
+
+            <ComponentExample
+              title="Searchable List"
+              preview={(
+                <Items className="max-w-md" placeholder="Search settings…">
+                  <Item value="Profile" leadingIcon={<Icon name="user" size="xSmall" decorative />} />
+                  <Item value="Notifications" leadingIcon={<Icon name="bell" size="xSmall" decorative />} />
+                  <Item value="Security" leadingIcon={<Icon name="lock" size="xSmall" decorative />} />
+                  <Item value="Billing" leadingIcon={<Icon name="creditCard" size="xSmall" decorative />} />
+                </Items>
+              )}
+              code={`import { Items, Item } from "@/components/ui/items"\n\n<Items placeholder=\"Search settings…\">\n  <Item value=\"Profile\" />\n  <Item value=\"Notifications\" />\n  <Item value=\"Security\" />\n  <Item value=\"Billing\" />\n</Items>`}
+            />
+
+            <ComponentExample
+              title="Grouped"
+              preview={(
+                <Items className="max-w-md">
+                  <ItemGroup label="General">
+                    <Item value="Home" leadingIcon={<Icon name="home" size="xSmall" decorative />} />
+                    <Item value="Search" leadingIcon={<Icon name="search" size="xSmall" decorative />} />
+                    <Item value="Downloads" leadingIcon={<Icon name="download" size="xSmall" decorative />} />
+                  </ItemGroup>
+                  <ItemGroup label="Danger Zone">
+                    <Item value="Delete account" tone="danger" leadingIcon={<Icon name="trash" size="xSmall" decorative />} />
+                  </ItemGroup>
+                </Items>
+              )}
+              code={`import { Items, Item, ItemGroup } from "@/components/ui/items"\n\n<Items>\n  <ItemGroup label=\"General\">\n    <Item value=\"Home\" />\n    <Item value=\"Search\" />\n    <Item value=\"Downloads\" />\n  </ItemGroup>\n  <ItemGroup label=\"Danger Zone\">\n    <Item value=\"Delete account\" tone=\"danger\" />\n  </ItemGroup>\n</Items>`}
+            />
+
+            <ComponentExample
+              title="When to use / not use"
+              description="Use Items for interactive, keyboardable lists (commands, actions). Use Prose lists for static content; use DropdownMenu/Select/ContextMenu for anchored menus."
+              preview={(
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="rounded-lg border border-emerald-300/60 bg-emerald-50/40 p-4 dark:border-emerald-500/40 dark:bg-emerald-500/10">
+                    <h4 className="mb-2 font-semibold text-emerald-700 dark:text-emerald-300">Use Items for:</h4>
+                    <ul className="list-disc pl-5 text-sm text-emerald-900 dark:text-emerald-200">
+                      <li>Command palettes and pickers</li>
+                      <li>Searchable action menus</li>
+                      <li>Selectable lists with icons</li>
+                    </ul>
+                  </div>
+                  <div className="rounded-lg border border-amber-300/60 bg-amber-50/40 p-4 dark:border-amber-500/40 dark:bg-amber-500/10">
+                    <h4 className="mb-2 font-semibold text-amber-700 dark:text-amber-300">Don’t use for:</h4>
+                    <ul className="list-disc pl-5 text-sm text-amber-900 dark:text-amber-200">
+                      <li>Static documentation (use Prose ul/ol)</li>
+                      <li>Context menus (use Dropdown/ContextMenu)</li>
+                      <li>Tabular data (use Table)</li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+              code={`// Use Items for interactive lists; prefer native lists for static content.`}
+            />
+          </section>
+
+          {/* Typography Do's & Don'ts */}
+          <section className="space-y-10" id="typographyDosDonts" style={{ order: orderMap['typographyDosDonts'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Typography Do's & Don'ts</h2>
+              <p className="text-sm text-muted-foreground md:text-base">Quick, opinionated guidance to keep type consistent and readable.</p>
+            </div>
+            <ComponentExample
+              title="Examples"
+              preview={(
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="rounded-lg border border-emerald-300/60 bg-emerald-50/40 p-4 dark:border-emerald-500/40 dark:bg-emerald-500/10">
+                    <h4 className="mb-2 font-semibold text-emerald-700 dark:text-emerald-300">Do</h4>
+                    <ul className="list-disc pl-5 text-sm text-emerald-900 dark:text-emerald-200">
+                      <li><span className="font-medium">Use balanced H1–H2</span> for long titles.</li>
+                      <li>Clamp body in tight cards (<code>clamp=2</code>).</li>
+                      <li>Keep line length ~60–75ch for paragraphs.</li>
+                      <li>Use semantic tones; keep contrast high.</li>
+                    </ul>
+                  </div>
+                  <div className="rounded-lg border border-red-300/60 bg-red-50/40 p-4 dark:border-red-500/40 dark:bg-red-500/10">
+                    <h4 className="mb-2 font-semibold text-red-700 dark:text-red-300">Don't</h4>
+                    <ul className="list-disc pl-5 text-sm text-red-900 dark:text-red-200">
+                      <li>Clamp headings H1–H3.</li>
+                      <li>Use color alone for emphasis.</li>
+                      <li>Skip heading levels (e.g., H1 → H3).</li>
+                      <li>Overuse all caps or tight tracking.</li>
+                    </ul>
+                  </div>
+                </div>
+              )}
+              code={`// Do: balance H1–H2, clamp body, maintain contrast\n// Don't: clamp headings, rely on color alone, skip levels`}
+            />
+          </section>
+
+          {/* Prose */}
+          <section className="space-y-10" id="prose" style={{ order: orderMap['prose'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Prose</h2>
+              <p className="text-sm text-muted-foreground md:text-base">Editorial wrapper for articles and docs. Provides rhythm, list spacing, and sensible defaults.</p>
+            </div>
+            <ComponentExample
+              title="Full Example"
+              description="Headings, paragraphs, lists, blockquote, code, and links."
+              preview={(
+                <div className="space-y-6">
+                  <Prose className="rounded-lg border border-border/60 bg-background/60 p-6">
+                    <h1>Prose defaults</h1>
+                    <p>
+                      Use <a href="#">Prose</a> for rich text like documentation. It sets a comfortable measure and spaced
+                      headings, lists, and code. Inline <code>code</code> and <strong>strong</strong> text are styled.
+                    </p>
+                    <h2>Blockquote</h2>
+                    <blockquote>
+                      Typography rules should be consistent, predictable, and easy to scan.
+                    </blockquote>
+                    <h3>Lists</h3>
+                    <ul>
+                      <li>Consistent spacing</li>
+                      <li>Readable measure (~70ch)</li>
+                      <li>Themed links and <code>code</code></li>
+                    </ul>
+                    <h3>Code block</h3>
+                    <pre><code>{`function greet(name){\n  return \`Hello, ${'${name}'}!\`\n}`}</code></pre>
+                  </Prose>
+                  <Prose invert className="rounded-lg border border-border/60 bg-foreground/5 p-6">
+                    <h3>Inverted</h3>
+                    <p>Use <code>invert</code> for dark cards on light backgrounds or vice versa.</p>
+                  </Prose>
+                </div>
+              )}
+              code={`import { Prose } from "@/components/ui/prose"\n\n<Prose>\n  <h1>Prose defaults</h1>\n  <p>Use <a href="#">Prose</a>…</p>\n  <blockquote>…</blockquote>\n  <ul><li>…</li></ul>\n  <pre><code>…</code></pre>\n</Prose>`}
+            />
+          </section>
+
+          {/* Typography Migration */}
+          <section className="space-y-10" id="typographyMigration" style={{ order: orderMap['typographyMigration'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Typography Migration</h2>
+              <p className="text-sm text-muted-foreground md:text-base">Map legacy QDS Text → new Heading/Text. Prefer tokens, remove layout props, and clamp instead of ellipsis hacks.</p>
+            </div>
+            <ComponentExample
+              title="Mapping"
+              preview={(
+                <div className="overflow-x-auto rounded-lg border border-border/60">
+                  <table className="w-full text-left text-sm">
+                    <thead className="bg-muted/50 text-muted-foreground">
+                      <tr>
+                        <th className="px-3 py-2">Legacy</th>
+                        <th className="px-3 py-2">Prop</th>
+                        <th className="px-3 py-2">New</th>
+                        <th className="px-3 py-2">Notes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="heroTitle"</td><td className="px-3 py-2">&lt;Heading level=1 /&gt;</td><td className="px-3 py-2">Use balance for long titles</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="title"</td><td className="px-3 py-2">&lt;Heading level=2 /&gt;</td><td className="px-3 py-2">Keep semantic order</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="subtitle"</td><td className="px-3 py-2">&lt;Heading level=3 /&gt;</td><td className="px-3 py-2">Use sparingly</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="largeBody"</td><td className="px-3 py-2">&lt;Text size="lg" /&gt;</td><td className="px-3 py-2"></td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="body"</td><td className="px-3 py-2">&lt;Text size="base" /&gt;</td><td className="px-3 py-2">Default</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="caption"</td><td className="px-3 py-2">&lt;Text size="caption" /&gt;</td><td className="px-3 py-2"></td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">type="footnote"</td><td className="px-3 py-2">&lt;Text size="footnote" /&gt;</td><td className="px-3 py-2"></td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">color props</td><td className="px-3 py-2">tone="muted|danger|…"</td><td className="px-3 py-2">Use semantic tokens</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">whiteSpace / isStrikeThrough</td><td className="px-3 py-2">Tailwind utilities</td><td className="px-3 py-2">whitespace-nowrap, line-through</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">alignment</td><td className="px-3 py-2">align="start|center|end"</td><td className="px-3 py-2">RTL-friendly</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">ellipsis hacks</td><td className="px-3 py-2">clamp=1|2|3</td><td className="px-3 py-2">Prefer clamp</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">Text</td><td className="px-3 py-2">inset/outset</td><td className="px-3 py-2">margin utilities</td><td className="px-3 py-2">m/mt/mb/py etc.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              )}
+              code={`// heroTitle -> <Heading level={1} />\n// title -> <Heading level={2} />\n// body -> <Text size=\"base\" />\n// caption -> <Text size=\"caption\" />\n// whitespace-nowrap -> <Text nowrap /> or utility\n// ellipsis -> <Text clamp={1} />`}
+            />
+          </section>
+
           {/* Loading Spinner */}
           <section className="space-y-10" id="loadingSpinner" style={{ order: orderMap['loadingSpinner'] }}>
             <div className="space-y-2">
               <h2 className="text-2xl font-semibold text-foreground">Loading Spinner</h2>
+              <p className="text-sm text-muted-foreground md:text-base">Minimal 180° ring spinner with a faint track. Supports size, tone, and speed presets.</p>
               <p className="text-sm text-muted-foreground md:text-base">A minimal SVG spinner inspired by the 180° ring with background. Supports size, tone, and speed presets.</p>
             </div>
 
@@ -446,6 +649,89 @@ export default function App() {
                 </div>
               )}
               code={`export function SpinnerSpeed(){\n  return (\n    <div className=\"flex items-center gap-6\">\n      <LoadingSpinner speed=\"slow\" />\n      <LoadingSpinner speed=\"normal\" />\n      <LoadingSpinner speed=\"fast\" />\n    </div>\n  )\n}`}
+            />
+          </section>
+
+          {/* Typography */}
+          <section className="space-y-10" id="typography" style={{ order: orderMap['typography'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Typography</h2>
+              <p className="text-sm text-muted-foreground md:text-base">Inter variable for UI. Balanced H1–H2, clamp support for Text, RTL-friendly alignment, and a Prose wrapper for editorial content.</p>
+            </div>
+
+            {/* Playground */}
+            <ComponentExample
+              title="Playground"
+              description="Toggle heading balance and body clamp."
+              preview={(
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <label className="inline-flex items-center gap-2">
+                      <input type="checkbox" checked={typoBalance} onChange={(e)=>setTypoBalance(e.target.checked)} />
+                      <span>Balance H1</span>
+                    </label>
+                    <label className="inline-flex items-center gap-2">
+                      <span>Clamp:</span>
+                      <select className="rounded border bg-background px-2 py-1" value={typoClamp} onChange={(e)=>setTypoClamp(Number(e.target.value) as any)}>
+                        {[0,1,2,3,4,5].map(n=> <option key={n} value={n}>{n}</option>)}
+                      </select>
+                    </label>
+                  </div>
+                  <Heading level={1} balance={typoBalance}>Design delightful, accessible interfaces at scale</Heading>
+                  <Text clamp={typoClamp}>ShadCN-powered components + a strict token system keep typography consistent across surfaces. Clamp text to avoid overflow in tight spaces; prefer balance for H1–H2 to prevent awkward breaks.</Text>
+                </div>
+              )}
+              code={`import { Heading } from "@/components/ui/heading"\nimport { Text } from "@/components/ui/text"\n\n<Heading level={1} balance>Design delightful, accessible interfaces at scale</Heading>\n<Text clamp={2}>…body copy…</Text>`}
+            />
+
+            <ComponentExample
+              title="Prose"
+              description="Editorial wrapper with sensible defaults."
+              preview={(
+                <Prose className="rounded-lg border border-border/60 bg-background/60 p-4">
+                  <h2>Typography in practice</h2>
+                  <p>Use balanced headings for single-column layouts and clamp body in tight cards. Keep contrast high and avoid relying on color alone for emphasis.</p>
+                  <ul>
+                    <li>Headings: levels 1–4</li>
+                    <li>Body sizes: sm, md, lg</li>
+                    <li>Clamp lines for truncation</li>
+                  </ul>
+                </Prose>
+              )}
+              code={`import { Prose } from "@/components/ui/prose"\n\n<Prose>\n  <h2>Typography in practice</h2>\n  <p>…</p>\n</Prose>`}
+            />
+          </section>
+
+          {/* Type Scale */}
+          <section className="space-y-10" id="typeScale" style={{ order: orderMap['typeScale'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Type Scale</h2>
+              <p className="text-sm text-muted-foreground md:text-base">All sizes at a glance — headings and text.</p>
+            </div>
+            <ComponentExample
+              title="Headings"
+              preview={(
+                <div className="space-y-3">
+                  <Heading level={1}>Heading 1 — level={1}</Heading>
+                  <Heading level={2}>Heading 2 — level={2}</Heading>
+                  <Heading level={3}>Heading 3 — level={3}</Heading>
+                  <Heading level={4}>Heading 4 — level={4}</Heading>
+                </div>
+              )}
+              code={`import { Heading } from "@/components/ui/heading"\n\n<Heading level={1}>Heading 1</Heading>\n<Heading level={2}>Heading 2</Heading>\n<Heading level={3}>Heading 3</Heading>\n<Heading level={4}>Heading 4</Heading>`}
+            />
+            <ComponentExample
+              title="Text"
+              preview={(
+                <div className="space-y-1.5">
+                  <Text size="lg">Text lg — size="lg"</Text>
+                  <Text size="base">Text base — size="base"</Text>
+                  <Text size="sm">Text sm — size="sm"</Text>
+                  <Text size="caption">Text caption — size="caption"</Text>
+                  <Text size="footnote">Text footnote — size="footnote"</Text>
+                </div>
+              )}
+              code={`import { Text } from "@/components/ui/text"\n\n<Text size=\"lg\">Text lg</Text>\n<Text size=\"base\">Text base</Text>\n<Text size=\"sm\">Text sm</Text>\n<Text size=\"caption\">Text caption</Text>\n<Text size=\"footnote\">Text footnote</Text>`}
             />
           </section>
 
