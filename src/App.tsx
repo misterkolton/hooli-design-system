@@ -21,6 +21,16 @@ import { Heading } from '@/components/ui/heading'
 import { Text } from '@/components/ui/text'
 import { Prose } from '@/components/ui/prose'
 import { Items, Item, ItemGroup } from '@/components/ui/items'
+import {
+  Section,
+  SectionHeader,
+  SectionTitle,
+  SectionDescription,
+  SectionActions,
+  SectionContent,
+  SectionFooter,
+  SectionEyebrow,
+} from '@/components/ui/section'
 // Icon usage demos moved to our Icon component
 import { ToastProvider } from '@/components/ui/toast'
 
@@ -261,6 +271,78 @@ const cardPreview = (
 
 const cardCode = `import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"\nimport { Anchor } from "@/components/ui/anchor"\nimport { Badge } from "@/components/ui/badge"\n\nexport function CardExamples() {\n  return (\n    <div className=\"grid gap-6 md:grid-cols-2\">\n      <Card>\n        <CardHeader>\n          <CardTitle>Basic Card</CardTitle>\n          <CardDescription>Header, content, and footer slots.</CardDescription>\n        </CardHeader>\n        <CardContent>\n          <p className=\"text-sm text-muted-foreground\">Use CardHeader, CardContent, and CardFooter to organize content.</p>\n        </CardContent>\n        <CardFooter>\n          <Badge>New</Badge>\n        </CardFooter>\n      </Card>\n\n      <Card elevated hoverable>\n        <CardHeader>\n          <CardTitle>Elevated + Hoverable</CardTitle>\n          <CardDescription>Shadow increases on hover.</CardDescription>\n        </CardHeader>\n        <CardContent>\n          <div className=\"h-20 rounded-md bg-muted\" />\n        </CardContent>\n        <CardFooter>\n          <Anchor href=\"#\">Learn more</Anchor>\n        </CardFooter>\n      </Card>\n\n      <Card center className=\"h-32\">\n        <div className=\"text-sm text-muted-foreground\">Centered content</div>\n      </Card>\n\n      <Card className=\"overflow-hidden\">\n        <div className=\"h-24 w-full bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20\" />\n        <CardContent className=\"pt-4\">\n          <CardTitle className=\"text-base\">Media Card</CardTitle>\n          <CardDescription>Combine with images or charts.</CardDescription>\n        </CardContent>\n      </Card>\n    </div>\n  )\n}`
 
+const sectionPreview = (
+  <div className="space-y-6">
+    <Section space="lg" divider="bottom">
+      <SectionHeader align="center">
+        <SectionEyebrow>Layout</SectionEyebrow>
+        <SectionTitle>Composable Section</SectionTitle>
+        <SectionDescription>
+          Use tokens for background, spacing, and typography. Slots keep markup flexible.
+        </SectionDescription>
+        <SectionActions>
+          <Button>Primary</Button>
+          <Button variant="outline">Secondary</Button>
+        </SectionActions>
+      </SectionHeader>
+      <SectionContent>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Card>
+            <CardContent className="p-4 text-sm text-muted-foreground">Content A</CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4 text-sm text-muted-foreground">Content B</CardContent>
+          </Card>
+        </div>
+      </SectionContent>
+      <SectionFooter divider>
+        <Text className="text-sm text-muted-foreground">Footer area</Text>
+      </SectionFooter>
+    </Section>
+
+    <Section variant="muted" space="md">
+      <SectionHeader>
+        <SectionTitle level={3}>Muted variant</SectionTitle>
+        <SectionDescription>Background adapts to theme. Great for contrast blocks.</SectionDescription>
+      </SectionHeader>
+    </Section>
+  </div>
+)
+
+const sectionCode = `import {\n  Section, SectionHeader, SectionTitle, SectionDescription,\n  SectionActions, SectionContent, SectionFooter, SectionEyebrow\n} from "@/components/ui/section"\nimport { Card, CardContent } from "@/components/ui/card"\nimport { Button } from "@/components/ui/button"\n\nexport function SectionExamples(){\n  return (\n    <>\n      <Section space=\"lg\" divider=\"bottom\">\n        <SectionHeader align=\"center\">\n          <SectionEyebrow>Layout</SectionEyebrow>\n          <SectionTitle>Composable Section</SectionTitle>\n          <SectionDescription>Use tokens for background, spacing, and typography.</SectionDescription>\n          <SectionActions>\n            <Button>Primary</Button>\n            <Button variant=\"outline\">Secondary</Button>\n          </SectionActions>\n        </SectionHeader>\n        <SectionContent>\n          <div className=\"grid gap-4 sm:grid-cols-2\">\n            <Card><CardContent className=\"p-4\">Content A</CardContent></Card>\n            <Card><CardContent className=\"p-4\">Content B</CardContent></Card>\n          </div>\n        </SectionContent>\n        <SectionFooter divider>Footer area</SectionFooter>\n      </Section>\n\n      <Section variant=\"muted\">\n        <SectionHeader>\n          <SectionTitle level={3}>Muted variant</SectionTitle>\n          <SectionDescription>Background adapts to theme.</SectionDescription>\n        </SectionHeader>\n      </Section>\n    </>\n  )\n}`
+
+const sectionPropsPreview = (
+  <div className="overflow-x-auto rounded-lg border border-border/60">
+    <table className="w-full text-left text-sm">
+      <thead className="bg-muted/50 text-muted-foreground">
+        <tr>
+          <th className="px-3 py-2">Element</th>
+          <th className="px-3 py-2">Prop</th>
+          <th className="px-3 py-2">Type</th>
+          <th className="px-3 py-2">Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">variant</td><td className="px-3 py-2">"transparent"|"default"|"muted"|"card"|"primary"|"secondary"|"accent"</td><td className="px-3 py-2">"transparent"</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">space</td><td className="px-3 py-2">"none"|"xs"|"sm"|"md"|"lg"|"xl"</td><td className="px-3 py-2">"md"</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">divider</td><td className="px-3 py-2">"none"|"top"|"bottom"|"both"</td><td className="px-3 py-2">"none"</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">contained</td><td className="px-3 py-2">boolean</td><td className="px-3 py-2">true</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">align</td><td className="px-3 py-2">"start"|"center"|"end"</td><td className="px-3 py-2">"start"</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">containerClassName</td><td className="px-3 py-2">string</td><td className="px-3 py-2">—</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section.Header</td><td className="px-3 py-2">compact</td><td className="px-3 py-2">boolean</td><td className="px-3 py-2">false</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section.Title</td><td className="px-3 py-2">level</td><td className="px-3 py-2">1|2|3|4</td><td className="px-3 py-2">2</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section.Title</td><td className="px-3 py-2">align</td><td className="px-3 py-2">"start"|"center"|"end"</td><td className="px-3 py-2">inherits</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section.Description</td><td className="px-3 py-2">maxWidth</td><td className="px-3 py-2">"none"|"sm"|"md"|"lg"</td><td className="px-3 py-2">"lg"</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section.Description</td><td className="px-3 py-2">align</td><td className="px-3 py-2">"start"|"center"|"end"</td><td className="px-3 py-2">inherits</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section.Actions</td><td className="px-3 py-2">align</td><td className="px-3 py-2">"start"|"center"|"end"</td><td className="px-3 py-2">inherits</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section.Footer</td><td className="px-3 py-2">divider</td><td className="px-3 py-2">boolean</td><td className="px-3 py-2">false</td></tr>
+      </tbody>
+    </table>
+  </div>
+)
+
+const sectionPropsCode = `// Key props\n\n// Section root\nexport type Variant = 'transparent' | 'default' | 'muted' | 'card' | 'primary' | 'secondary' | 'accent'\nexport type Space = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'\nexport type Divider = 'none' | 'top' | 'bottom' | 'both'\nexport type Align = 'start' | 'center' | 'end'\n\n// Slots\n// Section.Header: { compact?: boolean; align?: Align }\n// Section.Title: { level?: 1|2|3|4; align?: Align }\n// Section.Description: { maxWidth?: 'none'|'sm'|'md'|'lg'; align?: Align }\n// Section.Actions: { align?: Align }\n// Section.Footer: { divider?: boolean }`
+
 type ThemeMode = 'light' | 'dark'
 const THEME_STORAGE_KEY = 'hooli-theme'
 
@@ -353,6 +435,7 @@ export default function App() {
       'badge',
       'bar',
       'button',
+      'section',
       'capsule',
       'card',
       'colors',
@@ -421,6 +504,32 @@ export default function App() {
               description="Semantic tokens and functional scales used across the system."
               preview={<ColorsDocs />}
               code={`// Use semantic tokens for surfaces and text\n<div className=\"bg-card text-card-foreground\">Card</div>\n<button className=\"bg-primary text-primary-foreground hover:bg-primary/90\">Primary</button>\n\n// Utility palettes for states\n<button className=\"bg-emerald-600 text-emerald-50\">Success</button>\n<button className=\"bg-amber-500 text-amber-950\">Warning</button>\n<button className=\"bg-red-600 text-red-50\">Danger</button>`}
+            />
+          </section>
+
+          {/* Section */}
+          <section className="space-y-10" id="section" style={{ order: orderMap['section'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Section</h2>
+              <p className="text-sm text-muted-foreground md:text-base">
+                Page or block-level layout primitive with tokenized backgrounds, spacing, and
+                composable header/content/actions/footer slots. Accessible by default via region
+                semantics and auto-wired titles.
+              </p>
+            </div>
+
+            <ComponentExample
+              title="Examples"
+              description="Composable slots with spacing, dividers, and variants."
+              preview={sectionPreview}
+              code={sectionCode}
+            />
+
+            <ComponentExample
+              title="Props"
+              description="Key root and slot props for layout and alignment."
+              preview={sectionPropsPreview}
+              code={sectionPropsCode}
             />
           </section>
 
