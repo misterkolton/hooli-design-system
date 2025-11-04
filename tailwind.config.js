@@ -8,12 +8,16 @@ export default {
   ],
   theme: {
   	extend: {
-  		fontFamily: {
-  			sans: [
-  				'Inter',
+		fontFamily: {
+			sans: [
+				'Geist',
                     ...defaultTheme.fontFamily.sans
+                ],
+			mono: [
+				'Geist Mono',
+                    ...defaultTheme.fontFamily.mono
                 ]
-  		},
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
