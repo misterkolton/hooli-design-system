@@ -21,16 +21,7 @@ import { Heading } from '@/components/ui/heading'
 import { Text } from '@/components/ui/text'
 import { Prose } from '@/components/ui/prose'
 import { Items, Item, ItemGroup } from '@/components/ui/items'
-import {
-  Section,
-  SectionHeader,
-  SectionTitle,
-  SectionDescription,
-  SectionActions,
-  SectionContent,
-  SectionFooter,
-  SectionEyebrow,
-} from '@/components/ui/section'
+import { Section } from '@/components/ui/section'
 // Icon usage demos moved to our Icon component
 import { ToastProvider } from '@/components/ui/toast'
 
@@ -273,19 +264,13 @@ const cardCode = `import { Card, CardHeader, CardTitle, CardDescription, CardCon
 
 const sectionPreview = (
   <div className="space-y-6">
-    <Section space="lg" divider="bottom">
-      <SectionHeader align="center">
-        <SectionEyebrow>Layout</SectionEyebrow>
-        <SectionTitle>Composable Section</SectionTitle>
-        <SectionDescription>
-          Use tokens for background, spacing, and typography. Slots keep markup flexible.
-        </SectionDescription>
-        <SectionActions>
-          <Button>Primary</Button>
-          <Button variant="outline">Secondary</Button>
-        </SectionActions>
-      </SectionHeader>
-      <SectionContent>
+    <Section padding="lg" divider="bottom" title="Composable Section" subtitle="Use tokens for background, spacing, and typography. Slots keep markup flexible." actions={(
+      <>
+        <Button>Primary</Button>
+        <Button variant="outline">Secondary</Button>
+      </>
+    )}>
+      <Section.Content>
         <div className="grid gap-4 sm:grid-cols-2">
           <Card>
             <CardContent className="p-4 text-sm text-muted-foreground">Content A</CardContent>
@@ -294,22 +279,22 @@ const sectionPreview = (
             <CardContent className="p-4 text-sm text-muted-foreground">Content B</CardContent>
           </Card>
         </div>
-      </SectionContent>
-      <SectionFooter divider>
+      </Section.Content>
+      <Section.Footer divider>
         <Text className="text-sm text-muted-foreground">Footer area</Text>
-      </SectionFooter>
+      </Section.Footer>
     </Section>
 
-    <Section variant="muted" space="md">
-      <SectionHeader>
-        <SectionTitle level={3}>Muted variant</SectionTitle>
-        <SectionDescription>Background adapts to theme. Great for contrast blocks.</SectionDescription>
-      </SectionHeader>
+    <Section tone="muted" padding="md">
+      <Section.Header>
+        <h3 className="text-lg font-semibold">Muted variant</h3>
+        <p className="text-sm text-muted-foreground">Background adapts to theme. Great for contrast blocks.</p>
+      </Section.Header>
     </Section>
   </div>
 )
 
-const sectionCode = `import {\n  Section, SectionHeader, SectionTitle, SectionDescription,\n  SectionActions, SectionContent, SectionFooter, SectionEyebrow\n} from "@/components/ui/section"\nimport { Card, CardContent } from "@/components/ui/card"\nimport { Button } from "@/components/ui/button"\n\nexport function SectionExamples(){\n  return (\n    <>\n      <Section space=\"lg\" divider=\"bottom\">\n        <SectionHeader align=\"center\">\n          <SectionEyebrow>Layout</SectionEyebrow>\n          <SectionTitle>Composable Section</SectionTitle>\n          <SectionDescription>Use tokens for background, spacing, and typography.</SectionDescription>\n          <SectionActions>\n            <Button>Primary</Button>\n            <Button variant=\"outline\">Secondary</Button>\n          </SectionActions>\n        </SectionHeader>\n        <SectionContent>\n          <div className=\"grid gap-4 sm:grid-cols-2\">\n            <Card><CardContent className=\"p-4\">Content A</CardContent></Card>\n            <Card><CardContent className=\"p-4\">Content B</CardContent></Card>\n          </div>\n        </SectionContent>\n        <SectionFooter divider>Footer area</SectionFooter>\n      </Section>\n\n      <Section variant=\"muted\">\n        <SectionHeader>\n          <SectionTitle level={3}>Muted variant</SectionTitle>\n          <SectionDescription>Background adapts to theme.</SectionDescription>\n        </SectionHeader>\n      </Section>\n    </>\n  )\n}`
+const sectionCode = `import { Section } from "@/components/ui/section"\nimport { Card, CardContent } from "@/components/ui/card"\nimport { Button } from "@/components/ui/button"\n\nexport function SectionExamples(){\n  return (\n    <>\n      <Section padding=\"lg\" divider=\"bottom\" title=\"Composable Section\" subtitle=\"Use tokens for background, spacing, and typography.\" actions={(\n        <>\n          <Button>Primary</Button>\n          <Button variant=\"outline\">Secondary</Button>\n        </>\n      )}>\n        <Section.Content>\n          <div className=\"grid gap-4 sm:grid-cols-2\">\n            <Card><CardContent className=\"p-4\">Content A</CardContent></Card>\n            <Card><CardContent className=\"p-4\">Content B</CardContent></Card>\n          </div>\n        </Section.Content>\n        <Section.Footer divider>Footer area</Section.Footer>\n      </Section>\n\n      <Section tone=\"muted\">\n        <Section.Header>\n          <h3 className=\"text-lg font-semibold\">Muted variant</h3>\n          <p className=\"text-sm text-muted-foreground\">Background adapts to theme.</p>\n        </Section.Header>\n      </Section>\n    </>\n  )\n}`
 
 const sectionPropsPreview = (
   <div className="overflow-x-auto rounded-lg border border-border/60">
@@ -323,25 +308,23 @@ const sectionPropsPreview = (
         </tr>
       </thead>
       <tbody>
-        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">variant</td><td className="px-3 py-2">"transparent"|"default"|"muted"|"card"|"primary"|"secondary"|"accent"</td><td className="px-3 py-2">"transparent"</td></tr>
-        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">space</td><td className="px-3 py-2">"none"|"xs"|"sm"|"md"|"lg"|"xl"</td><td className="px-3 py-2">"md"</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">tone</td><td className="px-3 py-2">"default"|"muted"|"card"|"primary"|"secondary"|"accent"</td><td className="px-3 py-2">"default"</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">padding</td><td className="px-3 py-2">"none"|"xs"|"sm"|"md"|"lg"|"xl"</td><td className="px-3 py-2">"md"</td></tr>
         <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">divider</td><td className="px-3 py-2">"none"|"top"|"bottom"|"both"</td><td className="px-3 py-2">"none"</td></tr>
         <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">contained</td><td className="px-3 py-2">boolean</td><td className="px-3 py-2">true</td></tr>
         <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">align</td><td className="px-3 py-2">"start"|"center"|"end"</td><td className="px-3 py-2">"start"</td></tr>
         <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">containerClassName</td><td className="px-3 py-2">string</td><td className="px-3 py-2">—</td></tr>
         <tr className="border-t"><td className="px-3 py-2">Section.Header</td><td className="px-3 py-2">compact</td><td className="px-3 py-2">boolean</td><td className="px-3 py-2">false</td></tr>
-        <tr className="border-t"><td className="px-3 py-2">Section.Title</td><td className="px-3 py-2">level</td><td className="px-3 py-2">1|2|3|4</td><td className="px-3 py-2">2</td></tr>
-        <tr className="border-t"><td className="px-3 py-2">Section.Title</td><td className="px-3 py-2">align</td><td className="px-3 py-2">"start"|"center"|"end"</td><td className="px-3 py-2">inherits</td></tr>
-        <tr className="border-t"><td className="px-3 py-2">Section.Description</td><td className="px-3 py-2">maxWidth</td><td className="px-3 py-2">"none"|"sm"|"md"|"lg"</td><td className="px-3 py-2">"lg"</td></tr>
-        <tr className="border-t"><td className="px-3 py-2">Section.Description</td><td className="px-3 py-2">align</td><td className="px-3 py-2">"start"|"center"|"end"</td><td className="px-3 py-2">inherits</td></tr>
-        <tr className="border-t"><td className="px-3 py-2">Section.Actions</td><td className="px-3 py-2">align</td><td className="px-3 py-2">"start"|"center"|"end"</td><td className="px-3 py-2">inherits</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">title</td><td className="px-3 py-2">ReactNode</td><td className="px-3 py-2">—</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">subtitle</td><td className="px-3 py-2">ReactNode</td><td className="px-3 py-2">—</td></tr>
+        <tr className="border-t"><td className="px-3 py-2">Section</td><td className="px-3 py-2">actions</td><td className="px-3 py-2">ReactNode</td><td className="px-3 py-2">—</td></tr>
         <tr className="border-t"><td className="px-3 py-2">Section.Footer</td><td className="px-3 py-2">divider</td><td className="px-3 py-2">boolean</td><td className="px-3 py-2">false</td></tr>
       </tbody>
     </table>
   </div>
 )
 
-const sectionPropsCode = `// Key props\n\n// Section root\nexport type Variant = 'transparent' | 'default' | 'muted' | 'card' | 'primary' | 'secondary' | 'accent'\nexport type Space = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'\nexport type Divider = 'none' | 'top' | 'bottom' | 'both'\nexport type Align = 'start' | 'center' | 'end'\n\n// Slots\n// Section.Header: { compact?: boolean; align?: Align }\n// Section.Title: { level?: 1|2|3|4; align?: Align }\n// Section.Description: { maxWidth?: 'none'|'sm'|'md'|'lg'; align?: Align }\n// Section.Actions: { align?: Align }\n// Section.Footer: { divider?: boolean }`
+const sectionPropsCode = `// Key props\n\n// Section root\nexport type Tone = 'default' | 'muted' | 'card' | 'primary' | 'secondary' | 'accent'\nexport type Padding = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'\nexport type Divider = 'none' | 'top' | 'bottom' | 'both'\nexport type Align = 'start' | 'center' | 'end'\n\n// Optional slots\n// Section.Header: { compact?: boolean; align?: Align }\n// Section.Content: React.HTMLAttributes<HTMLDivElement>\n// Section.Footer: { divider?: boolean }`
 
 type ThemeMode = 'light' | 'dark'
 const THEME_STORAGE_KEY = 'hooli-theme'

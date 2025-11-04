@@ -1,83 +1,96 @@
 import * as React from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-
 import { cn } from '@/lib/utils'
-import { Heading, type HeadingProps } from '@/components/ui/heading'
+import { Heading } from '@/components/ui/heading'
 
-// Root styles: background + vertical spacing. Keep tokens and a11y friendly.
-const sectionVariants = cva(
-  'w-full',
-  {
-    variants: {
-      variant: {
-        transparent: 'bg-transparent',
-        default: 'bg-background text-foreground',
-        muted: 'bg-muted text-foreground',
-        card: 'bg-card text-card-foreground',
-        primary: 'bg-primary text-primary-foreground',
-        secondary: 'bg-secondary text-secondary-foreground',
-        accent: 'bg-accent text-accent-foreground',
-      },
-      space: {
-        none: 'py-0',
-        xs: 'py-4',
-        sm: 'py-6',
-        md: 'py-10',
-        lg: 'py-14',
-        xl: 'py-20',
-      },
-      divider: {
-        none: '',
-        top: 'border-t border-border',
-        bottom: 'border-b border-border',
-        both: 'border-y border-border',
-      },
-      contained: {
-        true: '',
-        false: '',
-      },
-    },
-    defaultVariants: {
-      variant: 'transparent',
-      space: 'md',
-      divider: 'none',
-      contained: true,
-    },
-  },
-)
+// Types
+export type Align = 'start' | 'center' | 'end'
+export type Padding = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type Tone = 'default' | 'muted' | 'card' | 'primary' | 'secondary' | 'accent'
 
-type Align = 'start' | 'center' | 'end'
-
-type SectionContextValue = {
-  idBase: string
-  align: Align
-  setHasTitle: (v: boolean) => void
-}
-
-const SectionContext = React.createContext<SectionContextValue | null>(null)
-
-export interface SectionProps
-  extends React.ComponentPropsWithoutRef<'section'>,
-    VariantProps<typeof sectionVariants> {
+export interface SectionProps extends Omit<React.ComponentPropsWithoutRef<'section'>, 'title'> {
+  as?: 'section' | 'div'
+  tone?: Tone
+  padding?: Padding
+  divider?: 'none' | 'top' | 'bottom' | 'both'
   align?: Align
-  /**
-   * When true, children render inside a centered container with horizontal padding.
-   * Disable to manage layout externally (e.g., nested sections or full-bleed content).
-   */
   contained?: boolean
-  /** Optional class to apply to the inner container wrapper when contained */
   containerClassName?: string
+  title?: React.ReactNode
+  subtitle?: React.ReactNode
+  actions?: React.ReactNode
 }
 
-export const Section = React.forwardRef<React.ElementRef<'section'>, SectionProps>(
+// Local helpers (simple, readable mappings)
+function toneClass(tone: Tone): string {
+  switch (tone) {
+    case 'muted':
+      return 'bg-muted text-foreground'
+    case 'card':
+      return 'bg-card text-card-foreground'
+    case 'primary':
+      return 'bg-primary text-primary-foreground'
+    case 'secondary':
+      return 'bg-secondary text-secondary-foreground'
+    case 'accent':
+      return 'bg-accent text-accent-foreground'
+    default:
+      return 'bg-background text-foreground'
+  }
+}
+
+function paddingClass(padding: Padding): string {
+  switch (padding) {
+    case 'none':
+      return 'py-0'
+    case 'xs':
+      return 'py-4'
+    case 'sm':
+      return 'py-6'
+    case 'md':
+      return 'py-10'
+    case 'lg':
+      return 'py-14'
+    case 'xl':
+      return 'py-20'
+  }
+}
+
+function dividerClass(divider: SectionProps['divider']): string {
+  switch (divider) {
+    case 'top':
+      return 'border-t border-border'
+    case 'bottom':
+      return 'border-b border-border'
+    case 'both':
+      return 'border-y border-border'
+    default:
+      return ''
+  }
+}
+
+function textAlignClass(align: Align): string {
+  return align === 'center' ? 'text-center' : align === 'end' ? 'text-right' : 'text-left'
+}
+function itemsAlignClass(align: Align): string {
+  return align === 'center' ? 'items-center' : align === 'end' ? 'items-end' : 'items-start'
+}
+function actionsJustifyClass(align: Align): string {
+  return align === 'center' ? 'justify-center' : 'justify-end'
+}
+
+const SectionRoot = React.forwardRef<HTMLElement, SectionProps>(
   (
     {
+      as = 'section',
+      tone = 'default',
+      padding = 'md',
+      divider = 'none',
       align = 'start',
       contained = true,
       containerClassName,
-      variant,
-      space,
-      divider,
+      title,
+      subtitle,
+      actions,
       className,
       role = 'region',
       children,
@@ -86,178 +99,104 @@ export const Section = React.forwardRef<React.ElementRef<'section'>, SectionProp
     ref,
   ) => {
     const idBase = React.useId()
-    const [hasTitle, setHasTitle] = React.useState(false)
+    const titleId = title ? `${idBase}-title` : undefined
 
-    const labelledBy = hasTitle ? `${idBase}-title` : undefined
+    const header = (title || subtitle || actions) && (
+      <div className={cn('flex flex-col gap-2', itemsAlignClass(align), textAlignClass(align))}>
+        {typeof title === 'string' || typeof title === 'number' ? (
+          <Heading id={titleId} level={2} className={cn(textAlignClass(align))}>
+            {title}
+          </Heading>
+        ) : title ? (
+          <div id={titleId}>{title}</div>
+        ) : null}
+        {subtitle ? (
+          <p className={cn('text-sm text-muted-foreground md:text-base', textAlignClass(align))}>{subtitle}</p>
+        ) : null}
+        {actions ? (
+          <div className={cn('mt-2 flex gap-2', actionsJustifyClass(align))}>{actions}</div>
+        ) : null}
+      </div>
+    )
 
-    return (
-      <section
-        ref={ref}
-        role={role}
-        aria-labelledby={labelledBy}
-        className={cn(sectionVariants({ variant, space, divider }), className)}
-        {...rest}
-      >
-        <SectionContext.Provider value={{ idBase, align, setHasTitle }}>
-          {contained ? (
-            <div className={cn('mx-auto max-w-6xl px-6', containerClassName)}>
-              {children}
-            </div>
-          ) : (
-            children
-          )}
-        </SectionContext.Provider>
+    const content = (
+      <div>
+        {header}
+        {children}
+      </div>
+    )
+
+    const inner = contained ? (
+      <div className={cn('mx-auto max-w-6xl px-6', containerClassName)}>{content}</div>
+    ) : (
+      content
+    )
+
+    const commonProps = {
+      role,
+      'aria-labelledby': titleId,
+      className: cn('w-full', toneClass(tone), paddingClass(padding), dividerClass(divider), className),
+      ...rest,
+    }
+
+    return as === 'div' ? (
+      <div ref={ref as React.Ref<HTMLDivElement>} {...commonProps}>
+        {inner}
+      </div>
+    ) : (
+      <section ref={ref as React.Ref<HTMLElement>} {...commonProps}>
+        {inner}
       </section>
     )
   },
 )
-Section.displayName = 'Section'
+SectionRoot.displayName = 'Section'
 
+// Optional slots for composition
 export interface SectionHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   align?: Align
-  /**
-   * Optional compact mode reduces spacing between header elements.
-   */
   compact?: boolean
 }
-
 export const SectionHeader = React.forwardRef<HTMLDivElement, SectionHeaderProps>(
-  ({ className, align, compact, ...rest }, ref) => {
-    const ctx = React.useContext(SectionContext)
-    const a = align ?? ctx?.align ?? 'start'
-    const alignCls = a === 'center' ? 'items-center text-center' : a === 'end' ? 'items-end text-right' : 'items-start text-left'
-
-    return (
-      <div
-        ref={ref}
-        className={cn('flex flex-col', compact ? 'gap-1.5' : 'gap-2.5', alignCls, className)}
-        {...rest}
-      />
-    )
-  },
+  ({ className, align = 'start', compact, ...rest }, ref) => (
+    <div
+      ref={ref}
+      className={cn('flex flex-col', compact ? 'gap-1.5' : 'gap-2.5', itemsAlignClass(align), textAlignClass(align), className)}
+      {...rest}
+    />
+  ),
 )
 SectionHeader.displayName = 'SectionHeader'
 
-export interface SectionTitleProps extends Omit<HeadingProps, 'align'> {
-  /**
-   * Overrides section alignment for the title only.
-   */
-  align?: Align
-}
-
-export const SectionTitle = React.forwardRef<HTMLHeadingElement, SectionTitleProps>(
-  ({ id, align, level = 2, className, ...rest }, ref) => {
-    const ctx = React.useContext(SectionContext)
-    const computedId = id ?? (ctx ? `${ctx.idBase}-title` : undefined)
-
-    React.useEffect(() => {
-      if (!ctx) return
-      ctx.setHasTitle(true)
-      return () => ctx.setHasTitle(false)
-    }, [ctx])
-
-    const a = align ?? ctx?.align ?? 'start'
-    const alignCls = a === 'center' ? 'text-center' : a === 'end' ? 'text-right' : 'text-left'
-
-    return (
-      <Heading
-        id={computedId}
-        ref={ref}
-        level={level}
-        className={cn(alignCls, className)}
-        {...rest}
-      />
-    )
-  },
-)
-SectionTitle.displayName = 'SectionTitle'
-
-export type SectionEyebrowProps = React.HTMLAttributes<HTMLDivElement>
-
-export const SectionEyebrow = React.forwardRef<HTMLDivElement, SectionEyebrowProps>(
-  ({ className, ...rest }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn(
-          'inline-flex items-center justify-center rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-blue-600',
-          'dark:border-blue-500/40 dark:bg-blue-500/10 dark:text-blue-200',
-          className,
-        )}
-        {...rest}
-      />
-    )
-  },
-)
-SectionEyebrow.displayName = 'SectionEyebrow'
-
-export interface SectionDescriptionProps
-  extends React.HTMLAttributes<HTMLParagraphElement> {
-  align?: Align
-  /** Limit readable width for long copy */
-  maxWidth?: 'none' | 'sm' | 'md' | 'lg'
-}
-
-export const SectionDescription = React.forwardRef<HTMLParagraphElement, SectionDescriptionProps>(
-  ({ className, align, maxWidth = 'lg', ...rest }, ref) => {
-    const ctx = React.useContext(SectionContext)
-    const a = align ?? ctx?.align ?? 'start'
-    const alignCls = a === 'center' ? 'text-center mx-auto' : a === 'end' ? 'text-right ml-auto' : 'text-left'
-    const mwCls = maxWidth === 'none' ? '' : maxWidth === 'sm' ? 'max-w-xl' : maxWidth === 'md' ? 'max-w-2xl' : 'max-w-3xl'
-
-    return (
-      <p
-        ref={ref}
-        className={cn('text-sm text-muted-foreground md:text-base', alignCls, mwCls, className)}
-        {...rest}
-      />
-    )
-  },
-)
-SectionDescription.displayName = 'SectionDescription'
-
-export interface SectionActionsProps extends React.HTMLAttributes<HTMLDivElement> {
-  align?: Align
-}
-
-export const SectionActions = React.forwardRef<HTMLDivElement, SectionActionsProps>(
-  ({ className, align }, ref) => {
-    const ctx = React.useContext(SectionContext)
-    const a = align ?? ctx?.align ?? 'start'
-    const alignCls = a === 'center' ? 'justify-center' : a === 'end' ? 'justify-end' : 'justify-start'
-
-    return (
-      <div ref={ref} className={cn('mt-3 flex gap-2', alignCls, className)} />
-    )
-  },
-)
-SectionActions.displayName = 'SectionActions'
-
 export type SectionContentProps = React.HTMLAttributes<HTMLDivElement>
-
 export const SectionContent = React.forwardRef<HTMLDivElement, SectionContentProps>(
-  ({ className, ...rest }, ref) => {
-    return <div ref={ref} className={cn('mt-6', className)} {...rest} />
-  },
+  ({ className, ...rest }, ref) => <div ref={ref} className={cn('mt-6', className)} {...rest} />,
 )
 SectionContent.displayName = 'SectionContent'
 
 export interface SectionFooterProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Adds a top divider above footer */
   divider?: boolean
 }
-
 export const SectionFooter = React.forwardRef<HTMLDivElement, SectionFooterProps>(
-  ({ className, divider, ...rest }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={cn('mt-8', divider && 'border-t border-border pt-6', className)}
-        {...rest}
-      />
-    )
-  },
+  ({ className, divider, ...rest }, ref) => (
+    <div ref={ref} className={cn('mt-8', divider && 'border-t border-border pt-6', className)} {...rest} />
+  ),
 )
 SectionFooter.displayName = 'SectionFooter'
+
+// Compound export for ergonomic imports
+type SectionCompound = React.ForwardRefExoticComponent<
+  SectionProps & React.RefAttributes<HTMLElement>
+> & {
+  Header: typeof SectionHeader
+  Content: typeof SectionContent
+  Footer: typeof SectionFooter
+}
+
+export const Section = Object.assign(SectionRoot, {
+  Header: SectionHeader,
+  Content: SectionContent,
+  Footer: SectionFooter,
+}) as SectionCompound
 
 export default Section
