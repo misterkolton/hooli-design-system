@@ -518,7 +518,7 @@ export default function App() {
                     title="Introducing our new QDS"
                     meta="By Ada · 5 min read"
                     excerpt="A quick overview of how we rethought tokens, components, and docs."
-                    imageSrc="public/images/color-blur-dark-hero.png"
+                    imageSrc="/images/color-blur-dark-hero.png"
                     imageAlt="color blur hero dark"
                     hoverable
                   />
@@ -532,7 +532,7 @@ export default function App() {
                   />
                 </div>
               )}
-              code={`import { ArticleCard } from "@/components/article-card/ArticleCard"\n\n<ArticleCard\n  href="/blog/introducing-qds"\n  kicker="Design System"\n  title="Introducing our new QDS"\n  meta="By Ada · 5 min read"\n  excerpt="A quick overview of how we rethought tokens, components, and docs."\n  imageSrc="public/images/anime-chick.png"\n  imageAlt="QDS hero"\n/>`}
+              code={`import { ArticleCard } from "@/components/article-card/ArticleCard"\n\n<ArticleCard\n  href="/blog/introducing-qds"\n  kicker="Design System"\n  title="Introducing our new QDS"\n  meta="By Ada · 5 min read"\n  excerpt="A quick overview of how we rethought tokens, components, and docs."\n  imageSrc="/images/anime-chick.png"\n  imageAlt="QDS hero"\n/>`}
             />
 
             <ComponentExample
@@ -969,17 +969,42 @@ export default function App() {
               title="Examples"
               description="Sizes, initials fallback, active bubble, and selected state with an animated checkmark."
               preview={(
-                <div className="flex flex-wrap items-center gap-6">
-                  <Avatar size="xSmall" initials="KT" />
-                  <Avatar size="small" initials="KT" isActive />
-                  <Avatar size="medium" initials="KT" />
-                  <Avatar size="large" initials="KT" isSelected />
-                  <Avatar size="xLarge" src="public/images/spiderman.png" alt="Example" />
-                  <Avatar size="xLarge" src="public/images/kt-avatar.png" alt="Example" />
-                  <Avatar size="xLarge" src="public/images/anime-chick.png" alt="Example" />
+                <div className="space-y-6">
+                  {/* Row 1: 4 square + 4 circle (initials/no image) */}
+                  <div className="flex flex-wrap items-center gap-6">
+                    {/* Square */}
+                    <Avatar size="xSmall" initials="KT" />
+                    <Avatar size="small" initials="KT" isActive />
+                    <Avatar size="medium" initials="KT" />
+                    <Avatar size="large" initials="KT" isSelected />
+                    {/* Circle versions */}
+                    <Avatar size="xSmall" shape="circle" initials="KT" />
+                    <Avatar size="small" shape="circle" initials="KT" isActive />
+                    <Avatar size="medium" shape="circle" initials="KT" />
+                    <Avatar size="large" shape="circle" initials="KT" isSelected />
+                  </div>
+
+                  {/* Row 2: image avatars (rounded + circular) */}
+                  <div className="flex flex-wrap items-center gap-6">
+                    {/* Rounded */}
+                    <Avatar size="xLarge" src="/images/spiderman.png" alt="Example" />
+                    <Avatar size="xLarge" src="/images/kt-avatar.png" alt="Example" />
+                    <Avatar size="xLarge" src="/images/anime-chick.png" alt="Example" />
+                    {/* Circular */}
+                    <Avatar size="xLarge" shape="circle" src="/images/spiderman.png" alt="Example" />
+                    <Avatar size="xLarge" shape="circle" src="/images/kt-avatar.png" alt="Example" />
+                    <Avatar size="xLarge" shape="circle" src="/images/anime-chick.png" alt="Example" />
+                  </div>
+
+                  {/* Row 3: ring-style active status on images */}
+                  <div className="flex flex-wrap items-center gap-6">
+                    <Avatar size="xLarge" src="/images/spiderman.png" alt="Example" isActive activeAppearance="ring" />
+                    <Avatar size="xLarge" src="/images/kt-avatar.png" alt="Example" isActive activeAppearance="ring" />
+                    <Avatar size="xLarge" src="/images/anime-chick.png" alt="Example" isActive activeAppearance="ring" />
+                  </div>
                 </div>
               )}
-              code={`import { Avatar } from "@/components/ui/avatar"\n\nexport function AvatarExamples() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-6\">\n      <Avatar size=\"xSmall\" initials=\"NW\" />\n      <Avatar size=\"small\" initials=\"NW\" isActive />\n      <Avatar size=\"medium\" initials=\"NW\" />\n      <Avatar size=\"large\" initials=\"NW\" isSelected />\n      <Avatar size=\"xLarge\" src=\"/spiderman.png\" alt=\"Example\" />\n    </div>\n  )\n}`}
+              code={`import { Avatar } from "@/components/ui/avatar"\n\nexport function AvatarExamples() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-6\">\n      <Avatar size=\"xSmall\" initials=\"NW\" />\n      <Avatar size=\"small\" initials=\"NW\" isActive />\n      <Avatar size=\"medium\" initials=\"NW\" />\n      <Avatar size=\"large\" initials=\"NW\" isSelected />\n      <Avatar size=\"xLarge\" src=\"/images/spiderman.png\" alt=\"Example\" />\n    </div>\n  )\n}`}
             />
           </section>
 
