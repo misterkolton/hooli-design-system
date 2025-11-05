@@ -21,9 +21,10 @@ import { Heading } from '@/components/ui/heading'
 import { Text } from '@/components/ui/text'
 import { Prose } from '@/components/ui/prose'
 import { Items, Item, ItemGroup } from '@/components/ui/items'
-import { Section } from '@/components/ui/section'
+
 // Icon usage demos moved to our Icon component
 import { ToastProvider } from '@/components/ui/toast'
+import Section from '@/components/ui/section'
 
 const buttonVariantsPreview = (
   <div className="flex flex-wrap gap-3">
@@ -264,36 +265,41 @@ const cardCode = `import { Card, CardHeader, CardTitle, CardDescription, CardCon
 
 const sectionPreview = (
   <div className="space-y-6">
-    <Section padding="lg" divider="bottom" title="Composable Section" subtitle="Use tokens for background, spacing, and typography. Slots keep markup flexible." actions={(
-      <>
-        <Button>Primary</Button>
-        <Button variant="outline">Secondary</Button>
-      </>
-    )}>
-      <Section.Content>
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Card>
-            <CardContent className="p-4 text-sm text-muted-foreground">Content A</CardContent>
-          </Card>
-          <Card>
-            <CardContent className="p-4 text-sm text-muted-foreground">Content B</CardContent>
-          </Card>
-        </div>
-      </Section.Content>
-      <Section.Footer divider>
+    <Section
+      padding="lg"
+      divider="bottom"
+      title="Composable Section"
+      subtitle="Use tokens for background, spacing, and typography. Slots keep markup flexible."
+      actions={
+        <>
+          <Button>Primary</Button>
+          <Button variant="outline">Secondary</Button>
+        </>
+      }
+    >
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Card>
+          <CardContent className="p-4 text-sm text-muted-foreground">Content A</CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-4 text-sm text-muted-foreground">Content B</CardContent>
+        </Card>
+      </div>
+
+      {/* Footer (with top divider) */}
+      <div className="mt-8 border-t border-border pt-6">
         <Text className="text-sm text-muted-foreground">Footer area</Text>
-      </Section.Footer>
+      </div>
     </Section>
 
-    <Section tone="muted" padding="md">
-      <Section.Header>
-        <h3 className="text-lg font-semibold">Muted variant</h3>
-        <p className="text-sm text-muted-foreground">Background adapts to theme. Great for contrast blocks.</p>
-      </Section.Header>
-    </Section>
+    <Section
+      tone="muted"
+      padding="md"
+      title="Muted variant"
+      subtitle="Background adapts to theme. Great for contrast blocks."
+    />
   </div>
 )
-
 const sectionCode = `import { Section } from "@/components/ui/section"\nimport { Card, CardContent } from "@/components/ui/card"\nimport { Button } from "@/components/ui/button"\n\nexport function SectionExamples(){\n  return (\n    <>\n      <Section padding=\"lg\" divider=\"bottom\" title=\"Composable Section\" subtitle=\"Use tokens for background, spacing, and typography.\" actions={(\n        <>\n          <Button>Primary</Button>\n          <Button variant=\"outline\">Secondary</Button>\n        </>\n      )}>\n        <Section.Content>\n          <div className=\"grid gap-4 sm:grid-cols-2\">\n            <Card><CardContent className=\"p-4\">Content A</CardContent></Card>\n            <Card><CardContent className=\"p-4\">Content B</CardContent></Card>\n          </div>\n        </Section.Content>\n        <Section.Footer divider>Footer area</Section.Footer>\n      </Section>\n\n      <Section tone=\"muted\">\n        <Section.Header>\n          <h3 className=\"text-lg font-semibold\">Muted variant</h3>\n          <p className=\"text-sm text-muted-foreground\">Background adapts to theme.</p>\n        </Section.Header>\n      </Section>\n    </>\n  )\n}`
 
 const sectionPropsPreview = (
