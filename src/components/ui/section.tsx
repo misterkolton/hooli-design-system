@@ -12,6 +12,7 @@ export type SectionProps = Omit<React.ComponentPropsWithoutRef<'section'>, 'titl
   padding?: Padding
   divider?: 'none' | 'top' | 'bottom' | 'both'
   align?: Align
+  actionsAlign?: Align
   contained?: boolean
   containerClassName?: string
   title?: string
@@ -25,6 +26,7 @@ export const Section = React.forwardRef<React.ElementRef<'section'>, SectionProp
     padding = 'md',
     divider = 'none',
     align = 'start',
+    actionsAlign,
     contained = true,
     containerClassName,
     title,
@@ -59,8 +61,13 @@ export const Section = React.forwardRef<React.ElementRef<'section'>, SectionProp
     align === 'center' ? 'text-center' : align === 'end' ? 'text-right' : 'text-left'
   const itemsAlign =
     align === 'center' ? 'items-center' : align === 'end' ? 'items-end' : 'items-start'
+  const actionsAlignFinal = actions ? (actionsAlign ?? align) : align
   const actionsJustify =
-    align === 'center' ? 'justify-center' : align === 'end' ? 'justify-end' : 'justify-start'
+    actionsAlignFinal === 'center'
+      ? 'justify-center'
+      : actionsAlignFinal === 'end'
+        ? 'justify-end'
+        : 'justify-start'
 
   const idBase = React.useId()
   const titleId = title ? `${idBase}-title` : undefined
@@ -78,14 +85,18 @@ export const Section = React.forwardRef<React.ElementRef<'section'>, SectionProp
             {subtitle}
           </p>
         ) : null}
-        {actions ? <div className={cn('mt-2 flex gap-2', actionsJustify)}>{actions}</div> : null}
+        {actions ? (
+          <div className={cn('mt-2 flex w-full flex-wrap items-center gap-2', actionsJustify)}>
+            {actions}
+          </div>
+        ) : null}
       </div>
     ) : null
 
   const content = (
     <div>
       {header}
-      {children}
+      {children ? <div className="mt-6" rounded-sm>{children}</div> : null}
     </div>
   )
 

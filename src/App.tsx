@@ -295,6 +295,7 @@ const sectionPreview = (
     <Section
       tone="muted"
       padding="md"
+      style={{borderRadius: '8px'}}
       title="Muted variant"
       subtitle="Background adapts to theme. Great for contrast blocks."
     />
