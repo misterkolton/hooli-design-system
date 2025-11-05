@@ -21,8 +21,6 @@ import { Heading } from '@/components/ui/heading'
 import { Text } from '@/components/ui/text'
 import { Prose } from '@/components/ui/prose'
 import { Items, Item, ItemGroup } from '@/components/ui/items'
-
-// Icon usage demos moved to our Icon component
 import { ToastProvider } from '@/components/ui/toast'
 import Section from '@/components/ui/section'
 
