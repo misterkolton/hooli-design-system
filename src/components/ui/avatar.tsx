@@ -43,6 +43,7 @@ function textSizeClass(size: SizeType) {
 export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   ({ className, src, alt, initials, size = 'small', isActive, isSelected, ...props }, ref) => {
     const spec = AVATAR_SIZES[size]
+    const [showImage, setShowImage] = React.useState<boolean>(!!src)
 
     return (
       <div
@@ -55,17 +56,20 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         style={{ width: spec.avatarSize, height: spec.avatarSize, minWidth: spec.avatarSize }}
         {...props}
       >
-        {src ? (
+        {showImage && src ? (
           // eslint-disable-next-line jsx-a11y/alt-text
           <img
             src={src}
             alt={alt ?? ''}
             className="absolute inset-0 h-full w-full object-cover"
             draggable={false}
+            onError={() => setShowImage(false)}
           />
         ) : initials ? (
           <span className={cn('font-semibold', textSizeClass(size), 'text-accent-foreground')}>{initials}</span>
-        ) : null}
+        ) : (
+          <span className={cn('font-semibold', textSizeClass(size), 'text-accent-foreground')}>{initials ?? ''}</span>
+        )}
 
         {isSelected ? (
           <div

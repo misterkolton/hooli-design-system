@@ -21,6 +21,7 @@ import { Heading } from '@/components/ui/heading'
 import { Text } from '@/components/ui/text'
 import { Prose } from '@/components/ui/prose'
 import { Items, Item, ItemGroup } from '@/components/ui/items'
+import { ArticleCard } from '@/components/article-card/ArticleCard'
 import { ToastProvider } from '@/components/ui/toast'
 import Section from '@/components/ui/section'
 
@@ -423,6 +424,7 @@ export default function App() {
       'badge',
       'bar',
       'button',
+      'articleCard',
       'section',
       'capsule',
       'card',
@@ -492,6 +494,80 @@ export default function App() {
               description="Semantic tokens and functional scales used across the system."
               preview={<ColorsDocs />}
               code={`// Use semantic tokens for surfaces and text\n<div className=\"bg-card text-card-foreground\">Card</div>\n<button className=\"bg-primary text-primary-foreground hover:bg-primary/90\">Primary</button>\n\n// Utility palettes for states\n<button className=\"bg-emerald-600 text-emerald-50\">Success</button>\n<button className=\"bg-amber-500 text-amber-950\">Warning</button>\n<button className=\"bg-red-600 text-red-50\">Danger</button>`}
+            />
+          </section>
+
+          {/* Article Card */}
+          <section className="space-y-10" id="articleCard" style={{ order: orderMap['articleCard'] }}>
+            <div className="space-y-2">
+              <h2 className="text-2xl font-semibold text-foreground">Article Card</h2>
+              <p className="text-sm text-muted-foreground md:text-base">
+                Compact card for articles with optional image, kicker, title, meta, excerpt, and actions. When
+                an href is provided, the card becomes a single accessible link with a stretched target.
+              </p>
+            </div>
+
+            <ComponentExample
+              title="Examples"
+              description="Default and muted variants; hoverable elevation and underline affordances."
+              preview={(
+                <div className="grid items-start gap-6 md:grid-cols-2">
+                  <ArticleCard
+                    href="/blog/introducing-qds"
+                    kicker="Design System"
+                    title="Introducing our new QDS"
+                    meta="By Ada · 5 min read"
+                    excerpt="A quick overview of how we rethought tokens, components, and docs."
+                    imageSrc="public/images/color-blur-dark-hero.png"
+                    imageAlt="color blur hero dark"
+                    hoverable
+                  />
+
+                  <ArticleCard
+                    tone="muted"
+                    size="sm"
+                    title="Smaller muted card"
+                    meta="By Lin · 3 min read"
+                    excerpt="Muted background tone for low-contrast contexts."
+                  />
+                </div>
+              )}
+              code={`import { ArticleCard } from "@/components/article-card/ArticleCard"\n\n<ArticleCard\n  href="/blog/introducing-qds"\n  kicker="Design System"\n  title="Introducing our new QDS"\n  meta="By Ada · 5 min read"\n  excerpt="A quick overview of how we rethought tokens, components, and docs."\n  imageSrc="public/images/anime-chick.png"\n  imageAlt="QDS hero"\n/>`}
+            />
+
+            <ComponentExample
+              title="Props"
+              description="Key props with defaults; keep the API small and string-first for content fields."
+              preview={(
+                <div className="overflow-x-auto rounded-lg border border-border/60">
+                  <table className="w-full text-left text-sm">
+                    <thead className="bg-muted/50 text-muted-foreground">
+                      <tr>
+                        <th className="px-3 py-2">Prop</th>
+                        <th className="px-3 py-2">Type</th>
+                        <th className="px-3 py-2">Default</th>
+                        <th className="px-3 py-2">Notes</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="border-t"><td className="px-3 py-2">href</td><td className="px-3 py-2">string</td><td className="px-3 py-2">—</td><td className="px-3 py-2">If set, card renders as a single accessible link</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">title</td><td className="px-3 py-2">string</td><td className="px-3 py-2">—</td><td className="px-3 py-2">Heading text</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">imageSrc</td><td className="px-3 py-2">string</td><td className="px-3 py-2">—</td><td className="px-3 py-2">Optional cover/thumbnail</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">imageAlt</td><td className="px-3 py-2">string</td><td className="px-3 py-2">—</td><td className="px-3 py-2">Alt text for image</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">kicker</td><td className="px-3 py-2">string</td><td className="px-3 py-2">—</td><td className="px-3 py-2">Small category/tag above title</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">meta</td><td className="px-3 py-2">string</td><td className="px-3 py-2">—</td><td className="px-3 py-2">Byline or read-time info</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">excerpt</td><td className="px-3 py-2">string</td><td className="px-3 py-2">—</td><td className="px-3 py-2">Short description</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">badge</td><td className="px-3 py-2">ReactNode</td><td className="px-3 py-2">—</td><td className="px-3 py-2">Optional status label</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">actions</td><td className="px-3 py-2">ReactNode</td><td className="px-3 py-2">—</td><td className="px-3 py-2">Optional non-link actions</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">tone</td><td className="px-3 py-2">"default" | "muted" | "card"</td><td className="px-3 py-2">"default"</td><td className="px-3 py-2">Visual tone</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">size</td><td className="px-3 py-2">"sm" | "md" | "lg"</td><td className="px-3 py-2">"md"</td><td className="px-3 py-2">Scale paddings/typography</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">hoverable</td><td className="px-3 py-2">boolean</td><td className="px-3 py-2">false</td><td className="px-3 py-2">Adds hover elevation/underline</td></tr>
+                      <tr className="border-t"><td className="px-3 py-2">className</td><td className="px-3 py-2">string</td><td className="px-3 py-2">—</td><td className="px-3 py-2">Additional classes</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              )}
+              code={`export type ArticleCardProps = {\n  href?: string\n  title: string\n  imageSrc?: string\n  imageAlt?: string\n  kicker?: string\n  meta?: string\n  excerpt?: string\n  badge?: React.ReactNode\n  actions?: React.ReactNode\n  tone?: 'default' | 'muted' | 'card'\n  size?: 'sm' | 'md' | 'lg'\n  hoverable?: boolean\n}\n`}
             />
           </section>
 
@@ -898,10 +974,12 @@ export default function App() {
                   <Avatar size="small" initials="KT" isActive />
                   <Avatar size="medium" initials="KT" />
                   <Avatar size="large" initials="KT" isSelected />
-                  <Avatar size="xLarge" src="/vite.svg" alt="Example" />
+                  <Avatar size="xLarge" src="public/images/spiderman.png" alt="Example" />
+                  <Avatar size="xLarge" src="public/images/kt-avatar.png" alt="Example" />
+                  <Avatar size="xLarge" src="public/images/anime-chick.png" alt="Example" />
                 </div>
               )}
-              code={`import { Avatar } from "@/components/ui/avatar"\n\nexport function AvatarExamples() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-6\">\n      <Avatar size=\"xSmall\" initials=\"NW\" />\n      <Avatar size=\"small\" initials=\"NW\" isActive />\n      <Avatar size=\"medium\" initials=\"NW\" />\n      <Avatar size=\"large\" initials=\"NW\" isSelected />\n      <Avatar size=\"xLarge\" src=\"/vite.svg\" alt=\"Example\" />\n    </div>\n  )\n}`}
+              code={`import { Avatar } from "@/components/ui/avatar"\n\nexport function AvatarExamples() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-6\">\n      <Avatar size=\"xSmall\" initials=\"NW\" />\n      <Avatar size=\"small\" initials=\"NW\" isActive />\n      <Avatar size=\"medium\" initials=\"NW\" />\n      <Avatar size=\"large\" initials=\"NW\" isSelected />\n      <Avatar size=\"xLarge\" src=\"/spiderman.png\" alt=\"Example\" />\n    </div>\n  )\n}`}
             />
           </section>
 
